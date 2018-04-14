@@ -8,23 +8,52 @@ MongoClient.connect(url, function(err, dbo) {
   if (err) throw err;
   db = dbo.db("SliceLineDB");
   console.log("Database loaded");
-  createUser({username: "calvin", password: "123456"});
 });
 
 function createUser(userObject){
 	if(!userObject.username || !userObject.password){
 		return -1;
 	}
-	db.collection("users").insertOne(userObject, function(err, res) {
-    if (err) throw err;
+	db.createUser({
+		user: userObject.username,
+		pwd: userObject.password,
+		 roles: [
+        { role: "readWrite", db: "SliceLineDB"}
+    ]
+ 	});
+/*	db.createUser({
+		
+	});*/
+
 	console.log("User Created");
 	return 0;
-  });
+
 }
 
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + "/assets/index.html");
+})
+
+app.get('/login', (req, res) => {
+	res.sendFile(__dirname + "/assets/routes/login.html");
+});
+
+app.get("/signup", (req, res) => {
+	res.sendFile(__dirname + "/assets/routes/signup.html");
+})
+
+app.post('/login', (req, res) => {
+	console.log(req.body);
+});
+
+app.post("/signup", (req, res) => {
+	createUser(req.body);
+	console.log(req.body);
 })
 
 app.get('/*.*', (req, res) => {
