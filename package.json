@@ -19,6 +19,12 @@
   "homepage": "https://github.com/JoeyVinyard/SliceLine#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+<<<<<<< HEAD
     "express": "^4.16.3"
+=======
+    "express": "^4.16.3",
+    "mongodb": "^3.0.6",
+    "mongoose": "^5.0.14"
+>>>>>>> 284fd0970683f606c641315e0a989a239019adcb
   }
 }

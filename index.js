@@ -1,5 +1,45 @@
 const express = require('express')
 const app = express()
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+var db;
+var adminDb;
+
+MongoClient.connect(url, function(err, dbo) {
+  if (err) throw err;
+  db = dbo.db("SliceLineDB");
+  adminDb = db.admin();
+  console.log("Database loaded");
+});
+
+function createUser(userObject){
+	if(!userObject.username || !userObject.password){
+		return -1;
+	}
+
+	adminDb.addUser(userObject.username, userObject.password, {
+      roles:  [{
+        role : "userAdmin",
+        db   : "SliceLineDb"
+        }]
+    },
+    function(err, result) {
+
+    if (err){
+      return console.log('Error: could not add new user')
+    }
+});
+
+	
+/*	db.createUser({
+		
+	});*/
+
+	console.log("User Created");
+	return 0;
+
+}
+
 var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
@@ -22,6 +62,7 @@ app.post('/login', (req, res) => {
 });
 
 app.post("/signup", (req, res) => {
+	createUser(req.body);
 	console.log(req.body);
 })
 
