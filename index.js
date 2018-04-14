@@ -1,30 +1,28 @@
 const express = require('express')
 const app = express()
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-var db;
+var bodyParser = require('body-parser');
 
-MongoClient.connect(url, function(err, dbo) {
-  if (err) throw err;
-  db = dbo.db("SliceLineDB");
-  console.log("Database loaded");
-  createUser({username: "calvin", password: "123456"});
-});
-
-function createUser(userObject){
-	if(!userObject.username || !userObject.password){
-		return -1;
-	}
-	db.collection("users").insertOne(userObject, function(err, res) {
-    if (err) throw err;
-	console.log("User Created");
-	return 0;
-  });
-}
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + "/assets/index.html");
+})
+
+app.get('/login', (req, res) => {
+	res.sendFile(__dirname + "/assets/routes/login.html");
+});
+
+app.get("/signup", (req, res) => {
+	res.sendFile(__dirname + "/assets/routes/signup.html");
+})
+
+app.post('/login', (req, res) => {
+	console.log(req.body);
+});
+
+app.post("/signup", (req, res) => {
+	console.log(req.body);
 })
 
 app.get('/*.*', (req, res) => {
