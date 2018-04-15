@@ -1,0 +1,18 @@
+body{
+    background: #B12029;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#topBar{
+    background: #FAB422;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+#header{
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    color: white;
+    font-size: 4rem;
+}
