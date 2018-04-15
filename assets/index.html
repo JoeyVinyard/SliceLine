@@ -3,15 +3,30 @@
 		<title>
 			SliceLine
 		</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+		<link rel="stylesheet" href="/css/foundation.min.css">
 		<link rel="stylesheet" href="/css/index.css">
 		<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed" rel="stylesheet">
+		<script src="/js/particles.js"></script>
+		<script src="/js/index.js"></script>
+
+		<script type="text/javascript">
+			particlesJS("particles-js", "particles.json");
+		   </script>
 	</head>
-	<body>
+	<body id="particles-js"> 
 	<div class="row">
 		<div id="topBar" class="medium-12 medium-centered column">
 			<div id="header">
 				<p id="Title">SliceLine</p>
+			</div>
+		</div>
+		<div id="mainSection" class="medium-12 medium-centered columns">
+			<div class="medium-6 columns" id="leftSide">
+				<button class="button">Login</button>
+				<button class="button">Signup</button>
+			</div>
+			<div class="medium-6 columns" id="rightSide">
+				<img src="/pizza.png" id="pizzaImg"> 
 			</div>
 		</div>
 	</div>
