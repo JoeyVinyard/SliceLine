@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
+var passwordHash = require('password-hash');
 var db;
 var adminDb;
 
@@ -44,7 +45,15 @@ app.post('/login', (req, res) => {
 		res.status(500).send('Failed to provided username password');
 		return;
 	}
-	db.authenticate
+	var hashedPass = passwordHash.generate(log.password);
+	console.log(hashedPass);
+	adminDb.authenticate(log.username, hashedPass, function(err, ress) {
+		if(ress){
+			res.status(200).send("You logged in! Now go find some pizza to eat");
+		}else {
+			res.status(501).send("Invald Username and Password combination");
+		}
+	});
 });
 
 app.post("/signup", (req, res) => {
@@ -55,14 +64,15 @@ app.post("/signup", (req, res) => {
 	}else if(userObject.password != userObject.confpass){
 		res.status(501).send('Password and Password Confirmation do not match');
 	}else {
-		db.addUser(userObject.username, userObject.password, {
+		var hashedPass = passwordHash.generate(userObject.password);
+		console.log(hashedPass);
+		adminDb.addUser(userObject.username, hashedPass, {
 			roles:  [{
 				role : "userAdmin",
-				db   : "SliceLineDB"
+				db   : "admin"
 			}]
 		},
 		function(err, result) {
-
 			if (err){
 				console.log(err);
 				res.status(400).send(err);
