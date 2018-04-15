@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
+var bodyParser = require('body-parser');
+var pizza = require('pizzapi');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://joey:joey@ds229465.mlab.com:29465/sliceline";
 var db;
 var adminDb;
 
@@ -19,9 +21,6 @@ function createUser(userObject){
 
 }
 
-var bodyParser = require('body-parser');
-var pizza = require('pizzapi');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -32,6 +31,14 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
 	res.sendFile(__dirname + "/assets/routes/login.html");
 });
+
+app.get('/pizza', (req, res) => {
+	res.sendFile(__dirname + "/assets/routes/pizza.html");
+});
+
+app.get('/pizzapals', (req, res) => {
+	res.send("ahhhhhhhh");
+})
 
 app.get("/signup", (req, res) => {
 	res.sendFile(__dirname + "/assets/routes/signup.html");
@@ -82,4 +89,3 @@ app.listen(3000, () => {
 	console.log("Listening on 3000");
 });
 
-//
