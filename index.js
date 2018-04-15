@@ -13,28 +13,7 @@ MongoClient.connect(url, function(err, dbo) {
 });
 
 function createUser(userObject){
-	if(!userObject.username || !userObject.password){
-		return -1;
-	}
-
-	adminDb.addUser(userObject.username, userObject.password, {
-      roles:  [{
-        role : "userAdmin",
-        db   : "SliceLineDb"
-        }]
-    },
-    function(err, result) {
-
-    if (err){
-      return console.log('Error: could not add new user')
-    }
-});
-
 	
-/*	db.createUser({
-		
-	});*/
-
 	console.log("User Created");
 	return 0;
 
@@ -59,11 +38,39 @@ app.get("/signup", (req, res) => {
 
 app.post('/login', (req, res) => {
 	console.log(req.body);
+	var log = req.body;
+	if(!log.username || !log.password){
+		res.status(500).send('Failed to provided username password');
+		return;
+	}
+	db.authenticate
 });
 
 app.post("/signup", (req, res) => {
-	createUser(req.body);
-	console.log(req.body);
+	console.log(req.body);	
+	var userObject = req.body;
+	if(!userObject.username || !userObject.password || !userObject.confpass) {
+		res.status(500).send('Failed to provided username password or password confirmation');
+	}else if(userObject.password != userObject.confpass){
+		res.status(501).send('Password and Password Confirmation do not match');
+	}else {
+		db.addUser(userObject.username, userObject.password, {
+			roles:  [{
+				role : "userAdmin",
+				db   : "SliceLineDB"
+			}]
+		},
+		function(err, result) {
+
+			if (err){
+				console.log(err);
+				res.status(400).send(err);
+			}else{
+				res.status(200).send("Woo! You can now find pizza Pals! Proced to Pizza");
+			}
+		});
+
+	}	
 })
 
 app.get('/*.*', (req, res) => {
