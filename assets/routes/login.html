@@ -1,18 +1,41 @@
 <html>
-	<head>
-		<title>
-			SliceLine
-		</title>
-	</head>
-	<body>
-		<h1>Login</h1>
-		<form action="/login" method="POST">
-			Username:
-			<input type="text" name="username">
-			Password:
-			<input type="password" name="password">
-			<input type="submit" value="Submit">
-		</form> 
-		<img src = "t-rex.png">
-	</body>
+
+<head>
+	<title>
+		SliceLine
+	</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+	<link rel="stylesheet" href="/css/login.css">
+	<link href="https://fonts.googleapis.com/css?family=Lobster|Roboto+Condensed" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="js/particles.js"></script>
+	<script src="js/login.js"></script>
+
+	<script type="text/javascript">
+		particlesJS("particles-js", "particles.json");
+	</script>
+</head>
+
+<body>
+	<div class="row" id="particles-js">
+		<div id="topBar" class="medium-12 column">
+			<div id="header">
+				<p id="Title">SliceLine</p>
+			</div>
+		</div>
+
+	</div>
+	<div class="mainSection">
+		<p id="Title">Login</p>
+		<form action="/login" method="POST" id="lForm">
+			<p id="formText">Username:</p>
+			<input type="text" name="username" id="formInput"> 
+			<p id="formText">Password:</p>
+			<input type="password" name="password" id="formInput">
+			<input type="submit" value="Submit" id="submitButton">
+		</form>
+	</div>
+</body>
+
 </html>
