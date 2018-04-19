@@ -5,6 +5,12 @@ var pizza = require('pizzapi');
 var MongoClient = require('mongodb').MongoClient;
 var passwordHash = require('password-hash');
 var url = "mongodb://joey:joey@ds229465.mlab.com:29465/sliceline";
+var firebase = require('firebase');
+var config = require('./config.js');
+firebase.initializeApp(config.fbconfig);
+firebase.auth().signInWithEmailAndPassword("admin@sliceline.com", config.password);
+
+//var url = "mongodb://10.192.1.46:27017/";
 var db;
 var adminDb;
 
@@ -16,10 +22,8 @@ MongoClient.connect(url, function(err, dbo) {
 });
 
 function createUser(userObject){
-	
 	console.log("User Created");
 	return 0;
-
 }
 
 app.use(bodyParser.json());
@@ -46,6 +50,7 @@ app.get("/signup", (req, res) => {
 })
 
 app.post('/login', (req, res) => {
+
 	console.log(req.body);
 	var log = req.body;
 	if(!log.username || !log.password){
@@ -54,7 +59,7 @@ app.post('/login', (req, res) => {
 	}
 	var hashedPass = passwordHash.generate(log.password);
 	console.log(hashedPass);
-	adminDb.authenticate(log.username, hashedPass, function(err, ress) {
+	db.authenticate(log.username, hashedPass, function(err, ress) {
 		if(ress){
 			res.status(200).send("You logged in! Now go find some pizza to eat");
 		}else {
@@ -73,19 +78,12 @@ app.post("/signup", (req, res) => {
 	}else {
 		var hashedPass = passwordHash.generate(userObject.password);
 		console.log(hashedPass);
-		adminDb.addUser(userObject.username, hashedPass, {
-			roles:  [{
-				role : "userAdmin",
-				db   : "admin"
-			}]
-		},
-		function(err, result) {
-			if (err){
-				console.log(err);
-				res.status(400).send(err);
-			}else{
-				res.status(200).send("Woo! You can now find pizza Pals! Proced to Pizza");
-			}
+		var userObj = {
+			username: userObject.username,
+			password: hashedPass
+		}
+		firebase.database().ref("users/" + userObject.username).set(userObj).then(() => {
+			res.status(200).send(hashedPass);
 		});
 
 	}	
