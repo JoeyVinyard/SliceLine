@@ -1,0 +1,90 @@
+body{
+    background: #B12029;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: auto;
+    height: auto;
+}
+
+#particles-js canvas{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: block;
+}
+
+#topBar{
+    background: #FAB422;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    position: relative;
+    z-index: 1;
+}
+
+#header{
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    color: white;
+    font-size: 4rem;
+}
+
+.mainSection{
+    width: 100%;
+    height: 50%;
+    /* background: blue; */
+    background: transparent;
+    text-align: center;
+
+    position: relative;
+    z-index: 1;
+    align-content: center;
+    float: center;
+}
+
+#Title{
+    font-size: 3rem;
+    color: white;
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+}
+
+#Title2{
+    font-size: 3rem;
+    color: white;
+    font-family: 'Lobster', cursive;
+}
+
+#lForm{
+    font-size: 1.5rem;
+    color: white;
+    width: 50vw;
+    margin-left: 25vw;
+}
+
+.formInput{
+    border: 2px solid white;
+    background: rgba(255,255,255,0.5);
+    border-radius: 25px;
+    text-align: center;
+}
+
+#formText{
+    color:  white;
+}
+#submitButton{
+    background: rgba(250, 180, 34, 0.5);
+    border: 2px solid #FAB422;
+    border-radius: 25px;
+    margin: 1rem;
+    width: 33%;
+    font-size: 1.5rem;
+    color: white;
+    /* margin-top: 5%; */
+}
+
+#submitButton:hover{
+    background: #FAB422;
+    border: 2px solid white;
+}
