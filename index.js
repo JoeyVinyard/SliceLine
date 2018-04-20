@@ -41,6 +41,10 @@ app.get('/pizza', (req, res) => {
 	res.sendFile(__dirname + "/assets/routes/pizza.html");
 });
 
+app.get('/order', (req, res) => {
+	res.sendFile(__dirname + "/assets/routes/order.html");
+});
+
 app.get('/pizzapals', (req, res) => {
 	res.send("ahhhhhhhh");
 })

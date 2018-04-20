@@ -15,6 +15,22 @@ body{
     z-index: 1;
 }
 
+.topButton{
+    background: rgba(250, 180, 34, 0.5);
+    border: 2px solid #FAB422;
+    border-radius: 25px;
+    /* margin: 1rem; */
+    width: 33%;
+    font-size: 1.25vw;
+    color: white;
+    margin-top: 5%;
+}
+
+.topButton:hover{
+    background: #FAB422;
+    border: 2px solid white;
+}
+
 #header{
     text-align: center;
     font-family: 'Lobster', cursive;
@@ -46,7 +62,7 @@ body{
 }
 
 #Title2{
-    font-size: 3rem;
+    font-size: 4vw;
     color: white;
     font-family: 'Lobster', cursive;
     /* cursor: pointer; */
@@ -98,6 +114,10 @@ body{
 
 .fa-long-arrow-up{
     cursor: pointer;
+}
+
+.fa-long-arrow-down:hover, .fa-long-arrow-up:hover{
+    color:  #B12029;
 }
 
 
