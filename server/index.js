@@ -100,4 +100,17 @@ app.get('/*.*', (req, res) => {
 app.listen(3000, () => {
 	console.log("Listening on 3000");
 });
-
+pizza.Util.findNearbyStores(
+	"219 Littleton St, West Lafayette, IN, 47906",
+	"Delivery",
+	(store) => {
+		var myStore = new pizza.Store(store.result.Stores[0].StoreID);
+		myStore.ID=store.result.Stores[0].StoreID;
+		myStore.getMenu(
+			function(storeData){
+				console.log(storeData.result);
+			}
+		);
+	}
+)
+	
