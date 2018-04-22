@@ -5,6 +5,16 @@ body{
     height: auto;
 }
 
+.hidden{
+    visibility: hidden;
+  }
+.visible{
+    visibility: visible;
+}
+.none{
+    display: none;
+}
+
 #topBar{
     background: #FAB422;
     border-bottom: 2px solid white;
@@ -141,6 +151,7 @@ body{
     margin: 0px;
     padding: 0px;
     background: rgba(250, 180, 34, 0.25);
+    overflow:scroll;
 }
 
 #orderTop{
@@ -153,6 +164,8 @@ body{
 
 #orderProducts{
     overflow: scroll;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 #orderCategories{
@@ -188,6 +201,51 @@ body{
     cursor: pointer;
 }
 
+.selected{
+    background: #8d1920;
+    color: #FAB422 !important;
+}
+
+#product{
+    border: 1px solid white;
+    border-radius: 25px;
+    height: 10vw;
+    color:white;
+    overflow: scroll;
+}
+
+#product:hover{
+    background: rgba(250, 180, 34, 0.25);
+    cursor: pointer;
+}
+
+#productInfo{
+    text-align: left;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    /* margin-left: 2rem; */
+}
+
+#productInfo p{
+    margin: 0px;
+}
+
+#prodTop{
+    height: 4vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+#description{
+    color: rgba(255,255,255, 0.75);
+    font-size: 0.75rem;
+    font-style: italic;
+    margin: 0px;
+    margin-top: 1%;
+    padding: 0px;
+}
+
 #orderTotal{
     border: 2px solid white;
     border-radius: 25px;
@@ -196,6 +254,47 @@ body{
     /* margin-left: 5vw; */
     display:inline-block;
     color: white;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+#totalTop{
+    height: 10%;
+    background: #FAB422;
+}
+
+#totalList{
+    height: 80%;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    overflow: scroll;
+    background: rgba(250, 180, 34, 0.25);
+    padding: 0px;
+}
+
+#totalBottom{
+    height: 10%;
+    background: #FAB422;
+}
+
+#orderEntry{
+    padding: 0px;
+    border-bottom: 1px solid white;
+}
+
+#orderEntry:hover{
+    background: #8d1920;
+    cursor: pointer;
+    color: #B12029;
+}
+
+#entryInfo{
+    text-align: left;
+}
+
+#entryInfo p{
+    margin: 0px;
 }
 
 #specView{
@@ -240,6 +339,11 @@ body{
     font-size: 1.25vw;
     color: white;
     margin-top: 2%;
+}
+
+.bottomButton:hover{
+    background: #FAB422;
+    border: 2px solid white;
 }
 
 
