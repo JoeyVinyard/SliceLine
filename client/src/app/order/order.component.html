@@ -1,7 +1,7 @@
 <div class="row">
 		<div id="topBar" class="medium-12 column">
 			<div id="header">
-				<p id="Title">SliceLine</p>
+				<p id="Title" routerLink="/" routerLinkActive="active">SliceLine</p>
 			</div>
 		</div>
 		<div id="mainSection" class="medium-12 column">
@@ -9,10 +9,10 @@
 				<button class="button topButton">Logout</button>
 			</div>
 			<div class="medium-4 column">
-				<p id="Title2">New Order</p>
+				<p id="Title2">New Party</p>
 			</div>
 			<div class="medium-4 column">
-				<button class="button topButton">Cancel <i class="fa fa-times"></i></button>
+				<button class="button topButton" routerLink="/pizza" routerLinkActive="active">Cancel <i class="fa fa-times"></i></button>
 			</div>
             
             <p class="subTitle medium-12 column">Step 1: Choose a Store</p>
@@ -115,7 +115,7 @@
 				</div>
             </div>
             
-            <p class="subTitle medium-12 column">Step 3: Order Specifications</p>
+            <p class="subTitle medium-12 column">Step 3: Specifications</p>
 			<div id="specView" class="medium-12 column">
 				<div class="medium-6 column">
                     <p>Delivery or Carryout:</p>

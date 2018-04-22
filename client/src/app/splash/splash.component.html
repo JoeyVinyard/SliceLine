@@ -1,14 +1,14 @@
 <div class="row" id="particles-js">
 		<div id="topBar" class="medium-12 column">
 			<div id="header">
-				<p id="Title">SliceLine</p>
+				<p id="Title" routerLink="/" routerLinkActive="active">SliceLine</p>
 			</div>
 		</div>
 		<div class="medium-12 column mainSection">
 			<div class="medium-6 column" id="leftSide">
 				<p id="smallSlogan">Hungry?</p>
-				<button class="button buttonSplash" onClick="parent.location='/login'">Login</button>
-				<button class="button buttonSplash" onClick="parent.location='/signup'">Signup</button>
+				<button class="button buttonSplash" routerLink="/login" routerLinkActive="active">Login</button>
+				<button class="button buttonSplash" routerLink="/signup" routerLinkActive="active">Signup</button>
 			</div>
 			<div class="medium-6 column" id="rightSide">
 				<img src="/pizzaSlice.png" id="pizzaImg">

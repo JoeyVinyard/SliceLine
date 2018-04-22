@@ -1,7 +1,7 @@
 <div class="row">
 	<div id="topBar" class="medium-12 column">
 		<div id="header">
-			<p id="Title">SliceLine</p>
+			<p id="Title" routerLink="/" routerLinkActive="active">SliceLine</p>
 		</div>
 	</div>
 	<div id="mainSection" class="medium-12 column">
@@ -9,10 +9,10 @@
 			<button class="button topButton">Logout</button>
 		</div>
 		<div class="medium-4 column">
-			<p id="Title2">Current Orders</p>
+			<p id="Title2">Current Parties</p>
 		</div>
 		<div class="medium-4 column">
-			<button class="button topButton">Add New <i class="fa fa-plus"></i></button>
+			<button class="button topButton" routerLink="/order" routerLinkActive="active">Add New <i class="fa fa-plus"></i></button>
 		</div>
 		<div id="mapView" class="medium-12 column">
 			<p id="Title2">Map Goes Here</p>
@@ -20,65 +20,46 @@
 		<div id="listView" class="medium-12 column">
 			<div id="topListBar" class="medium-12 column">
 				<div id="listHeader" class="medium-2 column">
-					<b><p>Size	<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></p></b>
+					<b><p>Distance	<i class="fa fa-long-arrow-down" (click)="sort('distance', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('distance', 'up')"></i></p></b>
+				</div>
+				<div id="listHeader" class="medium-2 column">
+					<b><p>Size	<i class="fa fa-long-arrow-down" (click)="sort('size', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('size', 'up')"></i></p></b>
+				</div>
+				<div id="listHeader" class="medium-3 column">
+					<b><p>Pizza	<i class="fa fa-long-arrow-down" (click)="sort('pizza', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('pizza', 'up')"></i></p></b>
+				</div>
+				<div id="listHeader" class="medium-2 column">
+					<b><p>Group Size	<i class="fa fa-long-arrow-down" (click)="sort('group', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('group', 'up')"></i></p></b>
+				</div>
+				<div id="listHeader" class="medium-2 column">
+					<b><p>Cost	<i class="fa fa-long-arrow-down" (click)="sort('cost', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('cost', 'up')"></i></p></b>
+				</div>
+				<div id="listHeader" class="medium-1 column">
+					<b><p>Join</p></b>
+				</div>
 			</div>
-			<div id="listHeader" class="medium-3 column">
-				<b><p>Toppings	<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></p></b>
+			<div id="listEntries" class="medium-12 column">
+				<div id="listEntry" class="medium-12 column" *ngFor="let num of testArray" [ngClass]="{'odd' : num%2==1, 'even' : num%2==0}">
+					<div id="entrySection" class="medium-2 column">
+						<b><p>0.25 miles</p></b>
+					</div>
+					<div id="entrySection" class="medium-2 column">
+						<b><p>Small</p></b>
+					</div>
+					<div id="entrySection" class="medium-3 column">
+						<b><p>Extra Cheese, Pepperoni</p></b>
+					</div>
+					<div id="entrySection" class="medium-2 column">
+						<b><p>1/2</p></b>
+					</div>
+					<div id="entrySection" class="medium-2 column">
+						<b><p>$4.50</p></b>
+					</div>
+					<div id="entrySection" class="medium-1 column joinSection">
+						<b><p>Join</p></b>
+						<!-- <button class="button listButton">Join</button> -->
+					</div>
+				</div>
 			</div>
-			<div id="listHeader" class="medium-2 column">
-				<b><p>Total	<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></p></b>
-			</div>
-			<div id="listHeader" class="medium-2 column">
-				<b><p>Group Size	<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></p></b>
-			</div>
-			<div id="listHeader" class="medium-2 column">
-				<b><p>Cost	<i class="fa fa-long-arrow-down"></i><i class="fa fa-long-arrow-up"></i></p></b>
-			</div>
-			<div id="listHeader" class="medium-1 column">
-				<b><p>Join</p></b>
-			</div>
-		</div>
-		<div id="listEntry" class="medium-12 column odd">
-			<div id="entrySection" class="medium-2 column">
-				<b><p>Small</p></b>
-			</div>
-			<div id="entrySection" class="medium-3 column">
-				<b><p>Extra Cheese, Pepperoni</p></b>
-			</div>
-			<div id="entrySection" class="medium-2 column">
-				<b><p>$9.00</p></b>
-			</div>
-			<div id="entrySection" class="medium-2 column">
-				<b><p>1/2</p></b>
-			</div>
-			<div id="entrySection" class="medium-2 column">
-				<b><p>$4.50</p></b>
-			</div>
-			<div id="entrySection" class="medium-1 column joinSection">
-				<b><p>Join</p></b>
-				<!-- <button class="button listButton">Join</button> -->
-			</div>
-		</div>
-		<div id="listEntry" class="medium-12 column even">
-			<div id="entrySection" class="medium-2 column">
-				<b><p>Medium</p></b>
-			</div>
-			<div id="entrySection" class="medium-3 column">
-				<b><p>Double Cheese</p></b>
-			</div>
-			<div id="entrySection" class="medium-2 column">
-				<b><p>$12.00</p></b>
-			</div>
-			<div id="entrySection" class="medium-2 column">
-				<b><p>2/3</p></b>
-			</div>
-			<div id="entrySection" class="medium-2 column">
-				<b><p>$4.00</p></b>
-			</div>
-			<div id="entrySection" class="medium-1 column joinSection">
-				<!-- <button class="button listButton">Join</button> -->
-				<b><p>Join</p></b>
-			</div>
-		</div>
 	</div>
 </div>
