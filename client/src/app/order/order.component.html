@@ -1,77 +1,140 @@
 <div class="row">
-	<div id="topBar" class="medium-12 column">
-		<div id="header">
-			<p id="Title">SliceLine</p>
+		<div id="topBar" class="medium-12 column">
+			<div id="header">
+				<p id="Title">SliceLine</p>
+			</div>
 		</div>
+		<div id="mainSection" class="medium-12 column">
+			<div class="medium-4 column">
+				<button class="button topButton">Logout</button>
+			</div>
+			<div class="medium-4 column">
+				<p id="Title2">New Order</p>
+			</div>
+			<div class="medium-4 column">
+				<button class="button topButton">Cancel <i class="fa fa-times"></i></button>
+			</div>
+            
+            <p class="subTitle medium-12 column">Step 1: Choose a Store</p>
+			<div id="storeView" class="medium-12 column">
+				<div id="storeEntry" class="medium-4 column">
+                    <div class="medium-1 column" id="storeIcon">
+                        <i class="fa fa-building-o"></i>
+                    </div>
+                    <div class="medium-3 column" id="storeInfo">
+                        <p>Address Line 1</p>
+                        <p>Address Line 2</p>
+                        <p>Distance Away</p>
+                    </div>
+                    
+                </div>
+                <div id="storeEntry" class="medium-4 column">
+                    <div class="medium-1 column" id="storeIcon">
+                        <i class="fa fa-building-o"></i>
+                    </div>
+                    <div class="medium-3 column" id="storeInfo">
+                        <p>Address Line 1</p>
+                        <p>Address Line 2</p>
+                        <p>Distance Away</p>
+                    </div>
+                    
+                </div>
+                <div id="storeEntry" class="medium-4 column">
+                    <div class="medium-1 column" id="storeIcon">
+                        <i class="fa fa-building-o"></i>
+                    </div>
+                    <div class="medium-3 column" id="storeInfo">
+                        <p>Address Line 1</p>
+                        <p>Address Line 2</p>
+                        <p>Distance Away</p>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <p class="subTitle medium-12 column">Step 2: Create Your Order</p>
+			<div id="orderView" class="medium-9 column">
+                <div id="orderTop" class="medium-12 column">
+                    <div id="orderCategories" class="medium-12 column">
+                        <div class="medium-3 column" id="orderCat">
+                            Pizza
+                        </div>
+                        <div class="medium-3 column" id="orderCat">
+                            Pasta
+                        </div>
+                        <div class="medium-3 column" id="orderCat">
+                            Wings
+                        </div>
+                        <div class="medium-3 column" id="orderCat">
+                            Sides
+                        </div>
+                    </div>
+                    <div class="medium-12 column" id="pizzaTypes">
+                        <div class="medium-3 column" id="orderCat">
+                            Hand Tossed
+                        </div>
+                        <div class="medium-2 column" id="orderCat">
+                            Thin
+                        </div>
+                        <div class="medium-2 column" id="orderCat">
+                            Pan
+                        </div>
+                        <div class="medium-2 column" id="orderCat">
+                            Brooklyn
+                        </div>
+                        <div class="medium-3 column" id="orderCat">
+                            Gluten Free
+                        </div>
+                    </div>
+                    <div class="medium-12 column" id="pizzaSizes">
+                        <div class="medium-3 column" id="orderCat">
+                            Small
+                        </div>
+                        <div class="medium-3 column" id="orderCat">
+                            Medium
+                        </div>
+                        <div class="medium-3 column" id="orderCat">
+                            Large
+                        </div>
+                        <div class="medium-3 column" id="orderCat">
+                            X-Large
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-12 column" id="orderProducts">
+                        <p>Products go here</p>
+                </div>
+            </div>
+
+            <div id="orderTotal" class="medium-3 column">
+				<u><b><p id="Title3">Order</p></b></u>
+            </div>
+            
+            <p class="subTitle medium-12 column">Step 3: Order Specifications</p>
+			<div id="specView" class="medium-12 column">
+				<div class="medium-6 column">
+                    <p>Delivery or Carryout:</p>
+                    <select>
+                        <option>Delivery</option>
+                        <option>Carryout</option>
+                    </select>
+                </div>
+                <div class="medium-6 column">
+                    <p>Party Size:</p>
+					<select>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+					</select>
+                </div>
+            </div>
+            <div class="medium-12 column">
+                <button class="button bottomButton">Create Party</button>
+            </div>
+		</div>
+
 	</div>
-	<div id="mainSection" class="medium-12 column">
-		<div class="medium-4 column">
-			<button class="button topButton">Logout</button>
-		</div>
-		<div class="medium-4 column">
-			<p id="Title2">New Order</p>
-		</div>
-		<div class="medium-4 column">
-			<button class="button topButton">Cancel <i class="fa fa-times"></i></button>
-		</div>
-
-		<p class="subTitle medium-12 column">Step 1: Choose a Store</p>
-		<div id="storeView" class="medium-12 column">
-			<div id="storeEntry" class="medium-4 column">
-				<div class="medium-1 column" id="storeIcon">
-					<i class="fa fa-building-o"></i>
-				</div>
-				<div class="medium-3 column" id="storeInfo">
-					<p>Address Line 1</p>
-					<p>Address Line 2</p>
-					<p>Distance Away</p>
-				</div>
-
-			</div>
-			<div id="storeEntry" class="medium-4 column">
-				<div class="medium-1 column" id="storeIcon">
-					<i class="fa fa-building-o"></i>
-				</div>
-				<div class="medium-3 column" id="storeInfo">
-					<p>Address Line 1</p>
-					<p>Address Line 2</p>
-					<p>Distance Away</p>
-				</div>
-
-			</div>
-			<div id="storeEntry" class="medium-4 column">
-				<div class="medium-1 column" id="storeIcon">
-					<i class="fa fa-building-o"></i>
-				</div>
-				<div class="medium-3 column" id="storeInfo">
-					<p>Address Line 1</p>
-					<p>Address Line 2</p>
-					<p>Distance Away</p>
-				</div>
-
-			</div>
-		</div>
-
-		<p class="subTitle medium-12 column">Step 2: Create Your Order</p>
-		<div id="orderView" class="medium-12 column">
-
-		</div>
-		<p class="subTitle medium-12 column">Step 3: Order Specifications</p>
-		<div id="specView" class="medium-12 column">
-			<div class="medium-6 column">
-				<p>Delivery or Carryout:</p>
-				<select>
-					<option>Delivery</option>
-					<option>Carryout</option>
-				</select>
-			</div>
-			<div class="medium-6 column">
-				<p>Group Size:</p>
-				<input id="number" type="number" min="0">
-			</div>
-		</div>
-		<div class="medium-12 column">
-			<button class="button bottomButton">Create Order</button>
-		</div>
-	</div>
-</div>

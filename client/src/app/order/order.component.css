@@ -1,3 +1,10 @@
+body{
+    background: #B12029;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: auto;
+    height: auto;
+}
+
 #topBar{
     background: #FAB422;
     border-bottom: 2px solid white;
@@ -61,6 +68,13 @@
     /* cursor: pointer; */
 }
 
+#Title3{
+    font-size: 2vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    /* cursor: pointer; */
+}
+
 .subTitle{
     font-size: 2.5vw;
     color: white;
@@ -103,7 +117,8 @@
 #storeIcon{
     /* font-size: 4vw; */
     font-size: 3rem;
-    padding-top: 3%;
+    padding-top: 1%;
+    width: auto;
 }
 
 #storeInfo{
@@ -111,7 +126,7 @@
     width: auto;
     margin: 0px;
     padding: 0px;
-    margin-left: 3rem;
+    margin-left: 2rem;
 }
 
 #storeInfo p{
@@ -121,16 +136,72 @@
 #orderView{
     border: 2px solid white;
     border-radius: 25px;
-    height: 65vh;
-    width: 100%;
+    height: 92vh;
+    display:inline-block;
+    margin: 0px;
+    padding: 0px;
+    background: rgba(250, 180, 34, 0.25);
+}
+
+#orderTop{
+    border-top-right-radius: 23px;
+    border-top-left-radius: 23px;
+    padding: 0px;
+    overflow: hidden;
+    height: auto;
+}
+
+#orderProducts{
+    overflow: scroll;
+}
+
+#orderCategories{
+    height: 4vw;
+    background: #FAB422;
+    margin: 0px;
+    padding: 0px;
+}
+
+#pizzaTypes{
+    height: 3vw;
+    background: rgba(250, 180, 34, 0.75);
+    margin: 0px;
+    padding: 0px;
+}
+
+#pizzaSizes{
+    height: 3vw;
+    background: rgba(250, 180, 34, 0.5);
+    margin: 0px;
+    padding: 0px;
+}
+
+#orderCat{
+    color:white;
+    font-family: 'Lobster', cursive;
+    height: 100%;
+    font-size: 2vw;
+}
+
+#orderCat:hover{
+    background: #8d1920;
+    cursor: pointer;
+}
+
+#orderTotal{
+    border: 2px solid white;
+    border-radius: 25px;
+    height: 92vh;
+    /* width: 100%; */
     /* margin-left: 5vw; */
-    display:inline-block
+    display:inline-block;
+    color: white;
 }
 
 #specView{
     border: 2px solid white;
     border-radius: 25px;
-    height: 30vh;
+    height: auto;
     width: 100%;
     /* margin-left: 5vw; */
     display:inline-block;
@@ -168,5 +239,7 @@
     /* width: 33%; */
     font-size: 1.25vw;
     color: white;
-    /* margin-top: 5%; */
+    margin-top: 2%;
 }
+
+
