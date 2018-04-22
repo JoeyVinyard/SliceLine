@@ -63,11 +63,12 @@ app.post('/login', (req, res) => {
 	}
 	var hashedPass = passwordHash.generate(log.password);
 	console.log(hashedPass);
-	db.authenticate(log.username, hashedPass, function(err, ress) {
-		if(ress){
-			res.status(200).send("You logged in! Now go find some pizza to eat");
+
+	firebase.database().ref("users/" + log.username).once("value").then((user) => {
+		if(user.val().password == hashedPass){
+			res.status(200).send("You succesfully logged in! Now go find some pizza to eat");
 		}else {
-			res.status(501).send("Invald Username and Password combination");
+			res.status(401).send("Invalid username and password combination");
 		}
 	});
 });

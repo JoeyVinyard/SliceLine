@@ -10,10 +10,11 @@
 		<p id="Title2">Login</p>
 		<form action="/login" method="POST" id="lForm">
 			<p id="formText">Username:</p>
-			<input type="text" name="username" class="formInput"> 
+			<input type="text" [(ngModel)]="username" name="username" class="formInput" > 
 			<p id="formText">Password:</p>
-			<input type="password" name="password" class="formInput">
-			<input type="submit" value="Submit" id="submitButton">
+			<input type="password" name="password" class="formInput" [(ngModel)]="password">
+			<input type="submit" value="Submit" id="submitButton" (click)="login()">
 		</form>
 	</div>
 </div>
+
