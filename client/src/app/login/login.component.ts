@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    console.log("does this happen");
     this.db.login(this.username, this.password);
   }
 
