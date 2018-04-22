@@ -1,0 +1,172 @@
+#topBar{
+    background: #FAB422;
+    border-bottom: 2px solid white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.topButton{
+    background: rgba(250, 180, 34, 0.5);
+    border: 2px solid #FAB422;
+    border-radius: 25px;
+    /* margin: 1rem; */
+    width: 33%;
+    font-size: 1.25vw;
+    color: white;
+    margin-top: 5%;
+}
+
+.topButton:hover{
+    background: #FAB422;
+    border: 2px solid white;
+}
+
+#header{
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    color: white;
+    font-size: 4rem;
+}
+
+#mainSection{
+    width: 100%;
+    height: 50%;
+    /* background: blue; */
+    background: transparent;
+    text-align: center;
+
+    position: relative;
+    z-index: 1;
+    align-content: center;
+    float: center;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+}
+
+#Title{
+    font-size: 3rem;
+    color: white;
+    font-family: 'Lobster', cursive;
+    cursor: pointer;
+}
+
+#Title2{
+    font-size: 4vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    /* cursor: pointer; */
+}
+
+.subTitle{
+    font-size: 2.5vw;
+    color: white;
+    font-family: 'Lobster', cursive;
+    padding: 0px;
+    margin: 0px;
+}
+
+#storeView{
+    border: 2px solid white;
+    border-radius: 25px;
+    height: 30vh;
+    width: 100%;
+    /* margin-left: 5vw; */
+    display:inline-block;
+    padding: 0px;
+    overflow: scroll;
+}
+
+#storeEntry{
+    color: white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    height: 40%;
+    background: rgba(250, 180, 34, 0.5);
+    text-align: left;
+    padding: 0px;
+    float: left;
+    cursor: pointer;
+}
+
+#storeEntry:hover{
+    background: #FAB422;
+}
+
+.column:last-child:not(:first-child), .columns:last-child:not(:first-child){
+    float: left;
+}
+
+#storeIcon{
+    /* font-size: 4vw; */
+    font-size: 3rem;
+    padding-top: 3%;
+}
+
+#storeInfo{
+    text-align: left;
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 3rem;
+}
+
+#storeInfo p{
+    margin: 0px;
+}
+
+#orderView{
+    border: 2px solid white;
+    border-radius: 25px;
+    height: 65vh;
+    width: 100%;
+    /* margin-left: 5vw; */
+    display:inline-block
+}
+
+#specView{
+    border: 2px solid white;
+    border-radius: 25px;
+    height: 30vh;
+    width: 100%;
+    /* margin-left: 5vw; */
+    display:inline-block;
+    color: white;
+    font-size: 1.5rem;
+}
+
+#specView p{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+#specView select{
+    border: 2px solid #FAB422;
+    border-radius: 25px;
+    color: #8d1920;
+    background: rgba(255, 255, 255, 0.75);
+    text-align: center;
+}
+
+#specView input{
+    border: 2px solid #FAB422;
+    border-radius: 25px;
+    color: #8d1920;
+    background: rgba(255, 255, 255, 0.75);
+    text-align: center;
+}
+
+.bottomButton{
+    background: rgba(250, 180, 34, 0.5);
+    border: 2px solid #FAB422;
+    border-radius: 25px;
+    /* margin: 1rem; */
+    /* width: 33%; */
+    font-size: 1.25vw;
+    color: white;
+    /* margin-top: 5%; */
+}
