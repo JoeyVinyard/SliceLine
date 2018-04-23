@@ -9,9 +9,6 @@ import {DatabaseService} from '../services/database.service'
 export class SignupComponent implements OnInit {
 
   constructor(private db: DatabaseService) {
-	particlesJS.load('particles-js', 'assets/particles.json', function() {
-		console.log('callback - particles.js config loaded');
-	});
   }
 
   username = "";
