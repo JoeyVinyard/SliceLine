@@ -68,8 +68,23 @@
     height: 65vh;
     width: 100%;
     /* margin-left: 5vw; */
-    display:inline-block
+    display:inline-block;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
 }
+
+#innerMap{
+    height: 100%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+agm-map {
+    height: 100%;
+    width: 100%;
+  }
 
 #listView{
     border: 2px solid white;

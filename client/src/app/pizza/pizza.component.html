@@ -15,9 +15,11 @@
 			<button class="button topButton" routerLink="/order" routerLinkActive="active">Add New <i class="fa fa-plus"></i></button>
 		</div>
 		<div id="mapView" class="medium-12 column">
-			<agm-map [latitude]="lat" [longitude]="lng" [minZoom]="15">
-				<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-			</agm-map>
+			<div class="medium-12 column" id="innerMap">
+				<agm-map [latitude]="lat" [longitude]="lng" [minZoom]="15">
+					<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+				</agm-map>
+			</div>
 		</div>
 		<div id="listView" class="medium-12 column">
 			<div id="topListBar" class="medium-12 column">
