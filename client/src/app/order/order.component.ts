@@ -1,54 +1,64 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DatabaseService } from '../services/database.service';
+
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+	selector: 'app-order',
+	templateUrl: './order.component.html',
+	styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
 
-  selectedStore = "";
-  orderCat = "";
-  pizzaCrust = "";
-  pizzaSize = "";
+	selectedStore = "";
+	orderCat = "";
+	pizzaCrust = "";
+	pizzaSize = "";
 
-  testArray=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-    
-      
-    setStore(number){
-    this.selectedStore = "";
+	testArray=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
-    //call menu from here
-    }
-  
-  
-    setCat(category){
-    this.orderCat = category;
-    console.log("Category: " + this.orderCat)
 
-    if(category != "pizza"){
-      this.pizzaCrust = "";
-      this.pizzaSize = "";
-    }
-  }
+	setStore(number){
+		this.selectedStore = "";
 
-  setCrust(crust){
-    this.pizzaCrust = crust;
-    console.log("Crust: " + this.pizzaCrust)
+		//call menu from here
+	}
+	
+	
+	setCat(category){
+		this.orderCat = category;
+		console.log("Category: " + this.orderCat)
 
-    //get all items with FlavorCode from Varients here
-  }
+		if(category != "pizza"){
+			this.pizzaCrust = "";
+			this.pizzaSize = "";
+		}
+	}
 
-  setSize(size){
-    this.pizzaSize = size;
-    console.log("Size: " + this.pizzaSize)
+	setCrust(crust){
+		this.pizzaCrust = crust;
+		console.log("Crust: " + this.pizzaCrust)
 
-    // filter results based on SizeCode
-  }
+		//get all items with FlavorCode from Varients here
+	}
 
-  constructor() { }
+	setSize(size){
+		this.pizzaSize = size;
+		console.log("Size: " + this.pizzaSize)
 
-  ngOnInit() {
-  }
+		// filter results based on SizeCode
+	}
+
+	constructor(private db: DatabaseService) {
+		navigator.geolocation.getCurrentPosition((pos) => {
+			db.getNearbyStores(pos).then((stores) => {
+				console.log(stores);
+			}).catch((err) => {
+				console.error(err);
+			})
+		})
+	}
+
+	ngOnInit() {
+	}
 
 }
