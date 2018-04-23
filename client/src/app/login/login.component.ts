@@ -10,11 +10,7 @@ export class LoginComponent implements OnInit {
 
   username = "";
   password = "";
-  constructor(private db: DatabaseService) {
-	particlesJS.load('particles-js', 'assets/particles.json', function() {
-		console.log('callback - particles.js config loaded');
-	});
-  }
+  constructor(private db: DatabaseService) { }
 
   login(){
     console.log("does this happen");

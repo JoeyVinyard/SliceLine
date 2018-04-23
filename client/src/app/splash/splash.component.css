@@ -1,12 +1,3 @@
-#particles-js{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    display: block;
-    top: 0;
-}
-
 #topBar{
     background: #FAB422;
     border-bottom: 2px solid white;

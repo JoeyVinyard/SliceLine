@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor() {
+	particlesJS.load('particles-js', 'assets/particles.json', function() {
+		console.log('callback - particles.js config loaded');
+	});
+  }
 }
