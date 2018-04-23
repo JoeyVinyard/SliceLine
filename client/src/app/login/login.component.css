@@ -1,16 +1,7 @@
 #main{
-    background: #B12029;
     font-family: 'Roboto Condensed', sans-serif;
     width: auto;
     height: auto;
-}
-
-#particles-js canvas{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    display: block;
 }
 
 #topBar{
