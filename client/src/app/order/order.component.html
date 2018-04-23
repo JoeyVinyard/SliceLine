@@ -17,14 +17,14 @@
 
 <p class="subTitle medium-12 column">Step 1: Choose a Store</p>
 <div id="storeView" class="medium-12 column">
-	<div id="storeEntry" class="medium-4 column" *ngFor="let store of testArray">
+	<div id="storeEntry" class="medium-4 column" *ngFor="let store of allStores" (click)="setStore(store.StoreID)" [ngClass]="{'selected' : selectedStore==store.StoreID}">
 		<div class="medium-1 column" id="storeIcon">
 			<i class="fa fa-building-o"></i>
 		</div>
 		<div class="medium-3 column" id="storeInfo">
-			<p>Address Line 1</p>
-			<p>Address Line 2</p>
-			<p>Distance Away</p>
+			<p>{{store.AddressDescription}}</p>
+			<p>{{store.Phone}}</p>
+			<!-- <p>Distance Away</p> -->
 		</div>
 		
 	</div>

@@ -9,6 +9,7 @@ import { DatabaseService } from '../services/database.service';
 })
 export class OrderComponent implements OnInit {
 
+  allStores = [];
 	selectedStore = "";
 	orderCat = "";
 	pizzaCrust = "";
@@ -18,8 +19,8 @@ export class OrderComponent implements OnInit {
 
 
 	setStore(number){
-		this.selectedStore = "";
-
+		this.selectedStore = number;
+    console.log("Current Store: " + this.selectedStore);
 		//call menu from here
 	}
 	
@@ -50,8 +51,10 @@ export class OrderComponent implements OnInit {
 
 	constructor(private db: DatabaseService) {
 		navigator.geolocation.getCurrentPosition((pos) => {
+      console.log("Location Started")
 			db.getNearbyStores(pos).then((stores) => {
-				console.log(stores);
+        console.log(stores);
+        this.allStores = stores;
 			}).catch((err) => {
 				console.error(err);
 			})
