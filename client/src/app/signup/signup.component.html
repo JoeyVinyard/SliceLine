@@ -8,13 +8,11 @@
 
 <div class="mainSection">
 	<p id="Title2">Sign up</p>
-	<form action="/signup" method="POST" id="lForm">
-		<p id="formText">Username:</p>
-		<input type="text" name="username" class="formInput">
-		<p id="formText">Password:</p>
-		<input type="password" name="password" class="formInput">
-		<p id="formText">Confirm Password:</p>
-		<input type="password" name="confpass" class="formInput">
-		<input type="submit" value="Submit" id="submitButton">
-	</form>
+	<p id="formText">Username:</p>
+	<input type="text" name="username" class="formInput" [(ngModel)]="username">
+	<p id="formText">Password:</p>
+	<input type="password" name="password" class="formInput"[(ngModel)]="password">
+	<p id="formText">Confirm Password:</p>
+	<input type="password" name="confpass" class="formInput"[(ngModel)]="confirm">
+	<input type="submit" value="Submit" id="submitButton"(click)="signup()">
 </div>

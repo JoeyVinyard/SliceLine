@@ -28,6 +28,24 @@ export class DatabaseService {
 			//this.http.post()
 		});
 	}
+
+	signup(username: String, pass: String, confirm: String): Promise<any> {
+		console.log("Wooo");
+		return new Promise((resolve, reject) => {
+			var loginObject = {
+				username: username,
+				password: pass,
+				confpass: confirm
+			};
+			console.log("sending");
+			this.http.post(this.dbUrl + "signup", JSON.stringify(loginObject), this.httpOptions).subscribe((data) => {
+				console.log(data);
+			});
+			//this.http.post()
+		});
+	}
+
+
 	
 	storeLocation(loc, username): Promise<any>{
 		return new Promise((resolve, reject) => {

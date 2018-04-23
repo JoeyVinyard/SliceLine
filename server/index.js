@@ -67,10 +67,9 @@ app.post('/login', (req, res) => {
 	console.log("login", req.body);
 	
 	var log = req.body;
-	console.log("username", log.username);
+	
 	//console.log(log[1]);
-	var user = log[1].username;
-	console.log(user);
+	
 
 	console.log(log);
 	if(!log.username || !log.password){
@@ -82,16 +81,19 @@ app.post('/login', (req, res) => {
 	console.log(hashedPass);
 
 	firebase.database().ref("users/" + log.username).once("value").then((user) => {
-		if(user.val().password == hashedPass){
-			console.log("Login succesful");
-			res.status(200).send("You succesfully logged in! Now go find some pizza to eat");
-		}else {
-			console.log("Invalid pass");
-			res.status(401).send("Invalid username and password combination");
+
+		if(user.val() && user.val().password){
+			if(passwordHash.verify(log.password, user.val().password)){
+				console.log("Login succesful");
+				res.status(200).send("You succesfully logged in! Now go find some pizza to eat");	
+			}else {
+				console.log("Invalid pass");
+				res.status(401).send("Invalid username and password combination");
+			}
 		}
 	}).catch((err) =>{
 		console.log(err);
-		res.status(400).send(err);
+		res.status(500).send(err);
 	});
 });
 
