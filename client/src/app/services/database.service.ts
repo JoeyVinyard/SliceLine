@@ -9,7 +9,7 @@ export class DatabaseService {
 
 	httpOptions = {
 		headers: new HttpHeaders({
-			'Content-Type':  'application/x-www-form-urlencoded',
+			'Content-Type':  'application/json',
 		})
 	};
 
@@ -28,6 +28,7 @@ export class DatabaseService {
 			//this.http.post()
 		});
 	}
+	
 	storeLocation(loc, username): Promise<any>{
 		return new Promise((resolve, reject) => {
 			var locationObject = {

@@ -27,13 +27,15 @@ function createUser(userObject){
 }
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
+	console.log("here");
 	res.sendFile(__dirname + "/assets/index.html");
 })
 
 app.get('/login', (req, res) => {
+	console.log("here");
 	res.sendFile(__dirname + "/assets/routes/login.html");
 });
 
@@ -55,10 +57,18 @@ app.get("/signup", (req, res) => {
 
 app.post('/login', (req, res) => {
 
-	console.log(req.body);
+	console.log("login", req.body);
+	
 	var log = req.body;
+	console.log("username", log.username);
+	//console.log(log[1]);
+	var user = log[1].username;
+	console.log(user);
+
+	console.log(log);
 	if(!log.username || !log.password){
-		res.status(500).send('Failed to provided username password');
+		console.log("invalid login");
+		res.status(401).send('Failed to provided username password');
 		return;
 	}
 	var hashedPass = passwordHash.generate(log.password);
@@ -66,10 +76,15 @@ app.post('/login', (req, res) => {
 
 	firebase.database().ref("users/" + log.username).once("value").then((user) => {
 		if(user.val().password == hashedPass){
+			console.log("Login succesful");
 			res.status(200).send("You succesfully logged in! Now go find some pizza to eat");
 		}else {
+			console.log("Invalid pass");
 			res.status(401).send("Invalid username and password combination");
 		}
+	}).catch((err) =>{
+		console.log(err);
+		res.status(400).send(err);
 	});
 });
 
@@ -95,6 +110,7 @@ app.post("/signup", (req, res) => {
 })
 
 app.get('/*.*', (req, res) => {
+	console.log("in here");
 	res.sendFile(__dirname + "/assets/res/"+req.url);
 })
 
@@ -109,7 +125,7 @@ pizza.Util.findNearbyStores(
 		myStore.ID=store.result.Stores[0].StoreID;
 		myStore.getMenu(
 			function(storeData){
-				console.log(storeData.result);
+				//console.log(storeData.result);
 			}
 		);
 	}
