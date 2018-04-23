@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { DatabaseService } from '../services/database.service';
+
 @Component({
 	selector: 'app-pizza',
 	templateUrl: './pizza.component.html',
@@ -55,10 +57,15 @@ export class PizzaComponent implements OnInit {
 		}
 	}
 
-	constructor(){
+	constructor(private db: DatabaseService){
 		navigator.geolocation.getCurrentPosition((pos) => {
 			this.lat = pos.coords.latitude;
 			this.lng = pos.coords.longitude;
+			db.getNearbyStores(pos).then((stores) => {
+				console.log(stores);
+			}).catch((err) => {
+				console.error(err);
+			})
 		})
 	}
 

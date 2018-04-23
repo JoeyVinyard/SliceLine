@@ -82,6 +82,25 @@ export class DatabaseService {
 			});
 		})
 	}
+
+	getNearbyStores(pos: Position): Promise<any>{
+		var options = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+			}),
+			params: new HttpParams()
+				.set("lat", pos.coords.latitude.toString())
+				.set("lon", pos.coords.longitude.toString())
+		}
+		return new Promise((resolve, reject) => {
+			this.http.get(this.dbUrl+ "getNearbyStores", options).subscribe((data) => {
+				if(data)
+					resolve(data);
+				else
+					reject(data["err"]);
+			});
+		})
+	}
 	constructor(private http: HttpClient) {}
 
 }

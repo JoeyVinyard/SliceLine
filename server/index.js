@@ -1,40 +1,32 @@
 const express = require('express')
 const app = express()
 var bodyParser = require('body-parser');
+var geo = require('node-geocoder');
 var pizza = require('pizzapi');
-var MongoClient = require('mongodb').MongoClient;
 var passwordHash = require('password-hash');
-var url = "mongodb://joey:joey@ds229465.mlab.com:29465/sliceline";
 var firebase = require('firebase');
 var config = require('./config.js');
 firebase.initializeApp(config.fbconfig);
 firebase.auth().signInWithEmailAndPassword("admin@sliceline.com", config.password);
 
-//var url = "mongodb://10.192.1.46:27017/";
-var db;
-var adminDb;
-
-MongoClient.connect(url, function(err, dbo) {
-  if (err) throw err;
-  db = dbo.db("SliceLineDB");
-  adminDb = db.admin();
-  console.log("Database loaded");
-});
-
-function createUser(userObject){
-	console.log("User Created");
-	return 0;
-}
+ 
+var options = {
+  provider: 'google',
+  httpAdapter: 'https',
+  apiKey: 'AIzaSyAYPFjyBz7atRsbr5GyJtlRiBLpu6hcD0A',
+  formatter: null
+};
+ 
+var geocoder = geo(options);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
-  next();
+	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+	next();
 });
-
 
 app.get('/', (req, res) => {
 	console.log("here");
@@ -63,25 +55,14 @@ app.get("/signup", (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-
-	console.log("login", req.body);
-	
 	var log = req.body;
-	
-	//console.log(log[1]);
-	
-
-	console.log(log);
 	if(!log.username || !log.password){
 		console.log("invalid login");
 		res.status(401).send('Failed to provided username password');
 		return;
 	}
 	var hashedPass = passwordHash.generate(log.password);
-	console.log(hashedPass);
-
 	firebase.database().ref("users/" + log.username).once("value").then((user) => {
-
 		if(user.val() && user.val().password){
 			if(passwordHash.verify(log.password, user.val().password)){
 				console.log("Login succesful");
@@ -114,8 +95,23 @@ app.post("/signup", (req, res) => {
 		firebase.database().ref("users/" + userObject.username).set(userObj).then(() => {
 			res.status(200).send(hashedPass);
 		});
-
 	}	
+})
+
+app.get('/getNearbyStores', (req, res) => {
+	geocoder.reverse(req.query, (err, location) => {
+		var loc = location[0];
+		var address = loc.streetNumber + " " + loc.streetName + ", " + loc.city + ", " + loc.administrativeLevels.level1short + ", " + loc.zipcode;
+		console.log(address);
+		pizza.Util.findNearbyStores(address, "Delivery", (store) => {
+			res.status(200).send(store.result.Stores);
+			// var myStore = new pizza.Store(store.result.Stores[0].StoreID);
+			// myStore.ID=store.result.Stores[0].StoreID;
+			// myStore.getMenu((storeData) => {
+			// 	res.status(200)
+			// });
+		})
+	})
 })
 
 app.get('/*.*', (req, res) => {
@@ -127,18 +123,5 @@ app.listen(3000, () => {
 	console.log("Listening on 3000");
 });
 
-pizza.Util.findNearbyStores(
-	"219 Littleton St, West Lafayette, IN, 47906",
-	"Delivery",
-	(store) => {
-		var myStore = new pizza.Store(store.result.Stores[0].StoreID);
-		myStore.ID=store.result.Stores[0].StoreID;
-		myStore.getMenu(
-			function(storeData){
-				//console.log(storeData.result);
 
-			}
-		);
-	}
-)
 	
