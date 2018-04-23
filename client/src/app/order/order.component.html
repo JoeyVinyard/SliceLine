@@ -1,145 +1,145 @@
 <div class="row">
-		<div id="topBar" class="medium-12 column">
-			<div id="header">
-				<p id="Title" routerLink="/" routerLinkActive="active">SliceLine</p>
-			</div>
-		</div>
-		<div id="mainSection" class="medium-12 column">
-			<div class="medium-4 column">
-				<button class="button topButton">Logout</button>
-			</div>
-			<div class="medium-4 column">
-				<p id="Title2">New Party</p>
-			</div>
-			<div class="medium-4 column">
-				<button class="button topButton" routerLink="/pizza" routerLinkActive="active">Cancel <i class="fa fa-times"></i></button>
-			</div>
-            
-            <p class="subTitle medium-12 column">Step 1: Choose a Store</p>
-			<div id="storeView" class="medium-12 column">
-				<div id="storeEntry" class="medium-4 column" *ngFor="let store of testArray">
-                    <div class="medium-1 column" id="storeIcon">
-                        <i class="fa fa-building-o"></i>
-                    </div>
-                    <div class="medium-3 column" id="storeInfo">
-                        <p>Address Line 1</p>
-                        <p>Address Line 2</p>
-                        <p>Distance Away</p>
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <p class="subTitle medium-12 column">Step 2: Create Your Order</p>
-			<div id="orderView" class="medium-9 column">
-                <div id="orderTop" class="medium-12 column">
-                    <div id="orderCategories" class="medium-12 column">
-                        <div class="medium-3 column" id="orderCat" (click)="setCat('pizza')" [ngClass]="{'selected' : orderCat=='pizza'}">
-                            Pizza
-                        </div>
-                        <div class="medium-3 column" id="orderCat" (click)="setCat('pasta')" [ngClass]="{'selected' : orderCat=='pasta'}">
-                            Pasta
-                        </div>
-                        <div class="medium-3 column" id="orderCat" (click)="setCat('wings')" [ngClass]="{'selected' : orderCat=='wings'}">
-                            Wings
-                        </div>
-                        <div class="medium-3 column" id="orderCat" (click)="setCat('other')" [ngClass]="{'selected' : orderCat=='other'}">
-                            Sides
-                        </div>
-                    </div>
-                    <div class="medium-12 column" id="pizzaTypes" [ngClass]="{'visible' : orderCat=='pizza', 'none' : orderCat !='pizza'}">
-                        <div class="medium-3 column" id="orderCat" (click)="setCrust('HANDTOSS')" [ngClass]="{'selected' : pizzaCrust=='HANDTOSS'}">
-                            Hand Tossed
-                        </div>
-                        <div class="medium-2 column" id="orderCat" (click)="setCrust('THIN')" [ngClass]="{'selected' : pizzaCrust=='THIN'}">
-                            Thin
-                        </div>
-                        <div class="medium-2 column" id="orderCat" (click)="setCrust('NPAN')" [ngClass]="{'selected' : pizzaCrust=='NPAN'}">
-                            Pan
-                        </div>
-                        <div class="medium-2 column" id="orderCat" (click)="setCrust('BK')" [ngClass]="{'selected' : pizzaCrust=='BK'}">
-                            Brooklyn
-                        </div>
-                        <div class="medium-3 column" id="orderCat" (click)="setCrust('GLUTENF')" [ngClass]="{'selected' : pizzaCrust=='GLUTENF'}">
-                            Gluten Free
-                        </div>
-                    </div>
-                    <div class="medium-12 column" id="pizzaSizes" [ngClass]="{'visible' : orderCat=='pizza'&&pizzaCrust!='', 'none' : orderCat !='pizza'||pizzaCrust==''}">
-                        <div class="medium-3 column" id="orderCat" (click)="setSize('10')" [ngClass]="{'selected' : pizzaSize=='10'}"> 
-                            Small
-                        </div>
-                        <div class="medium-3 column" id="orderCat" (click)="setSize('12')" [ngClass]="{'selected' : pizzaSize=='12'}">
-                            Medium
-                        </div>
-                        <div class="medium-3 column" id="orderCat" (click)="setSize('14')" [ngClass]="{'selected' : pizzaSize=='14'}">
-                            Large
-                        </div>
-                        <div class="medium-3 column" id="orderCat" (click)="setSize('16')" [ngClass]="{'selected' : pizzaSize=='16'}">
-                            X-Large
-                        </div>
-                    </div>
-                </div>
-                <div class="medium-12 column" id="orderProducts">
-					<div class="medium-6 column" id="product" *ngFor="let prod of testArray">
-						<div class="medium-6 column" id="productInfo">
-							<div class="medium-12 column" id="prodTop">
-								<b><p>Ultimate Pepperoni</p></b>
-								<p>$12.99</p>
-							</div>
-							<div class="medium-12 column" id="description">
-								<p id="description">Two layers of pepperoni sandwiched between provolone, Parmesan-Asiago and cheese made with 100% real mozzarella then sprinkled with oregano.</p>
-							</div>
-						</div>
-					</div>
-                </div>
-            </div>
-
-            <div id="orderTotal" class="medium-3 column">
-				<div class="medium-12 column" id="totalTop">
-					<u><b><p id="Title3">Order</p></b></u>
-				</div>
-				<div class="medium-12 column" id="totalList">
-					<div class="medium-12 column" id="orderEntry" *ngFor="let ent of testArray">
-						<div class="medium-8 column" id="entryInfo">
-							<b><p>Ultimate Pepperoni</p></b>
-							<p>Crust: Hand Tossed</p>
-							<p>Size: Medium</p>
-						</div>
-						<div class="medium-4 column" id="entryPrice">
-							<b><p>$12.99</p></b>
-						</div>
-					</div>
-				</div>
-				<div class="medium-12 column" id="totalBottom">
-						<u><b><p id="Title3">Total: $12.99</p></b></u>
-				</div>
-            </div>
-            
-            <p class="subTitle medium-12 column">Step 3: Specifications</p>
-			<div id="specView" class="medium-12 column">
-				<div class="medium-6 column">
-                    <p>Delivery or Carryout:</p>
-                    <select>
-                        <option>Delivery</option>
-                        <option>Carryout</option>
-                    </select>
-                </div>
-                <div class="medium-6 column">
-                    <p>Party Size:</p>
-					<select>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-						<option>6</option>
-						<option>7</option>
-						<option>8</option>
-					</select>
-                </div>
-            </div>
-            <div class="medium-12 column">
-                <button class="button bottomButton">Create Party</button>
-            </div>
-		</div>
-
+  <div id="topBar" class="medium-12 column">
+	 <div id="header">
+		<p id="Title" routerLink="/" routerLinkActive="active">SliceLine</p>
 	</div>
+</div>
+<div id="mainSection" class="medium-12 column">
+ <div class="medium-4 column">
+	<button class="button topButton">Logout</button>
+</div>
+<div class="medium-4 column">
+	<p id="Title2">New Party</p>
+</div>
+<div class="medium-4 column">
+	<button class="button topButton" routerLink="/pizza" routerLinkActive="active">Cancel <i class="fa fa-times"></i></button>
+</div>
+
+<p class="subTitle medium-12 column">Step 1: Choose a Store</p>
+<div id="storeView" class="medium-12 column">
+	<div id="storeEntry" class="medium-4 column" *ngFor="let store of testArray">
+		<div class="medium-1 column" id="storeIcon">
+			<i class="fa fa-building-o"></i>
+		</div>
+		<div class="medium-3 column" id="storeInfo">
+			<p>Address Line 1</p>
+			<p>Address Line 2</p>
+			<p>Distance Away</p>
+		</div>
+		
+	</div>
+</div>
+
+<p class="subTitle medium-12 column">Step 2: Create Your Order</p>
+<div id="orderView" class="medium-9 column">
+	<div id="orderTop" class="medium-12 column">
+		<div id="orderCategories" class="medium-12 column">
+			<div class="medium-3 column" id="orderCat" (click)="setCat('pizza')" [ngClass]="{'selected' : orderCat=='pizza'}">
+				Pizza
+			</div>
+			<div class="medium-3 column" id="orderCat" (click)="setCat('pasta')" [ngClass]="{'selected' : orderCat=='pasta'}">
+				Pasta
+			</div>
+			<div class="medium-3 column" id="orderCat" (click)="setCat('wings')" [ngClass]="{'selected' : orderCat=='wings'}">
+				Wings
+			</div>
+			<div class="medium-3 column" id="orderCat" (click)="setCat('other')" [ngClass]="{'selected' : orderCat=='other'}">
+				Sides
+			</div>
+		</div>
+		<div class="medium-12 column" id="pizzaTypes" [ngClass]="{'visible' : orderCat=='pizza', 'none' : orderCat !='pizza'}">
+			<div class="medium-3 column" id="orderCat" (click)="setCrust('HANDTOSS')" [ngClass]="{'selected' : pizzaCrust=='HANDTOSS'}">
+				Hand Tossed
+			</div>
+			<div class="medium-2 column" id="orderCat" (click)="setCrust('THIN')" [ngClass]="{'selected' : pizzaCrust=='THIN'}">
+				Thin
+			</div>
+			<div class="medium-2 column" id="orderCat" (click)="setCrust('NPAN')" [ngClass]="{'selected' : pizzaCrust=='NPAN'}">
+				Pan
+			</div>
+			<div class="medium-2 column" id="orderCat" (click)="setCrust('BK')" [ngClass]="{'selected' : pizzaCrust=='BK'}">
+				Brooklyn
+			</div>
+			<div class="medium-3 column" id="orderCat" (click)="setCrust('GLUTENF')" [ngClass]="{'selected' : pizzaCrust=='GLUTENF'}">
+				Gluten Free
+			</div>
+		</div>
+		<div class="medium-12 column" id="pizzaSizes" [ngClass]="{'visible' : orderCat=='pizza'&&pizzaCrust!='', 'none' : orderCat !='pizza'||pizzaCrust==''}">
+			<div class="medium-3 column" id="orderCat" (click)="setSize('10')" [ngClass]="{'selected' : pizzaSize=='10'}"> 
+				Small
+			</div>
+			<div class="medium-3 column" id="orderCat" (click)="setSize('12')" [ngClass]="{'selected' : pizzaSize=='12'}">
+				Medium
+			</div>
+			<div class="medium-3 column" id="orderCat" (click)="setSize('14')" [ngClass]="{'selected' : pizzaSize=='14'}">
+				Large
+			</div>
+			<div class="medium-3 column" id="orderCat" (click)="setSize('16')" [ngClass]="{'selected' : pizzaSize=='16'}">
+				X-Large
+			</div>
+		</div>
+	</div>
+	<div class="medium-12 column" id="orderProducts">
+	   <div class="medium-6 column" id="product" *ngFor="let prod of testArray">
+		  <div class="medium-6 column" id="productInfo">
+			 <div class="medium-12 column" id="prodTop">
+				<b><p>Ultimate Pepperoni</p></b>
+				<p>$12.99</p>
+			</div>
+			<div class="medium-12 column" id="description">
+				<p id="description">Two layers of pepperoni sandwiched between provolone, Parmesan-Asiago and cheese made with 100% real mozzarella then sprinkled with oregano.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div id="orderTotal" class="medium-3 column">
+	<div class="medium-12 column" id="totalTop">
+	   <u><b><p id="Title3">Order</p></b></u>
+   </div>
+   <div class="medium-12 column" id="totalList">
+	   <div class="medium-12 column" id="orderEntry" *ngFor="let ent of testArray">
+		  <div class="medium-8 column" id="entryInfo">
+			 <b><p>Ultimate Pepperoni</p></b>
+			 <p>Crust: Hand Tossed</p>
+			 <p>Size: Medium</p>
+		 </div>
+		 <div class="medium-4 column" id="entryPrice">
+			 <b><p>$12.99</p></b>
+		 </div>
+	 </div>
+ </div>
+ <div class="medium-12 column" id="totalBottom">
+  <u><b><p id="Title3">Total: $12.99</p></b></u>
+</div>
+</div>
+
+<p class="subTitle medium-12 column">Step 3: Specifications</p>
+<div id="specView" class="medium-12 column">
+	<div class="medium-6 column">
+		<p>Delivery or Carryout:</p>
+		<select>
+			<option>Delivery</option>
+			<option>Carryout</option>
+		</select>
+	</div>
+	<div class="medium-6 column">
+		<p>Party Size:</p>
+		<select>
+		  <option>2</option>
+		  <option>3</option>
+		  <option>4</option>
+		  <option>5</option>
+		  <option>6</option>
+		  <option>7</option>
+		  <option>8</option>
+	  </select>
+  </div>
+</div>
+<div class="medium-12 column">
+	<button class="button bottomButton">Create Party</button>
+</div>
+</div>
+
+</div>

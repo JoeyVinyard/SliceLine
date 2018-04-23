@@ -101,7 +101,7 @@ app.post("/signup", (req, res) => {
 app.get('/getNearbyStores', (req, res) => {
 	geocoder.reverse(req.query, (err, location) => {
 		var loc = location[0];
-		var address = loc.streetNumber + " " + loc.streetName + ", " + loc.city + ", " + loc.administrativeLevels.level1short + ", " + loc.zipcode;
+		var address = loc.city + ", " + loc.administrativeLevels.level1short + ", " + loc.zipcode;
 		console.log(address);
 		pizza.Util.findNearbyStores(address, "Delivery", (store) => {
 			res.status(200).send(store.result.Stores);
