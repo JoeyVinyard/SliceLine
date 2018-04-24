@@ -37,11 +37,14 @@ export class PizzaComponent implements OnInit {
 		else if(criteria == "size"){
 			if(direction == "up"){
 				this.parties.sort( function(a , b) {
-					return 0;
+					return a.order.length - b.order.length;
 				})
 				console.log("Size Up")
 			}
 			else if(direction == "down"){
+				this.parties.sort( function(a , b) {
+					return b.order.length - a.order.length;
+				})
 				console.log("Size Down")
 			}
 		}
@@ -55,17 +58,28 @@ export class PizzaComponent implements OnInit {
 		}
 		else if(criteria == "group"){
 			if(direction == "up"){
+				this.parties.sort( function(a , b) {
+					return a.size - b.size;
+				})
 				console.log("Group Up")
 			}
 			else if(direction == "down"){
+				this.parties.sort( function(a , b) {
+					return b.size - a.size;
+				})
 				console.log("Group Down")
 			}
 		}
 		else if(criteria == "cost"){
 			if(direction == "up"){
-				console.log("Cost Up")
+				this.parties.sort( function(a , b) {
+					return a.total - b.total;
+				})
 			}
 			else if(direction == "down"){
+				this.parties.sort( function(a , b) {
+					return b.total - a.total;
+				})
 				console.log("Cost Down")
 			}
 		}
