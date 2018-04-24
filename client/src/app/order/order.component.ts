@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DatabaseService } from '../services/database.service';
 
@@ -9,224 +10,227 @@ import { DatabaseService } from '../services/database.service';
 })
 export class OrderComponent implements OnInit {
 
-  allStores = [];
+	allStores = [];
 	selectedStore = "";
 	orderCat = "";
 	pizzaCrust = "";
-  pizzaSize = "";
-  
-  menu = [];
-  pizza = [];
-  pasta = [];
-  wings = [];
-  sides = [];
+	pizzaSize = "";
+	
+	menu = [];
+	pizza = [];
+	pasta = [];
+	wings = [];
+	sides = [];
 
-  currentMenu = [];
-  currentOrder = [];
-  currentTotal = 0;
+	currentMenu = [];
+	currentOrder = [];
+	currentTotal = 0;
 
-  adjPizza = [];
-
-
-  party = {
-    Order: [],
-    Size: 0,
-    Type: "",
-    Total: 0,
-    pos: {}
-  }
+	adjPizza = [];
+	party = {
+		Order: [],
+		Size: 0,
+		Type: "",
+		Total: 0,
+		pos: {}
+	}
 
 
 	setStore(storeID){
-    this.selectedStore = storeID;
-    
-    this.orderCat = "";
-    this.pizzaCrust = "";
-    this.pizzaSize = "";
-    this.currentMenu = [];
+		this.selectedStore = storeID;
+		
+		this.orderCat = "";
+		this.pizzaCrust = "";
+		this.pizzaSize = "";
+		this.currentMenu = [];
 
-   		console.log("Current Store: " + this.selectedStore);
-   		this.db.getStoreMenu(storeID).then((menu) => {
-        this.menu = [];
-        this.pizza = [];
-        this.pasta = [];
-        this.wings = [];
-        this.sides = [];
+			console.log("Current Store: " + this.selectedStore);
+			this.db.getStoreMenu(storeID).then((menu) => {
+				this.menu = [];
+				this.pizza = [];
+				this.pasta = [];
+				this.wings = [];
+				this.sides = [];
 
-        console.log(menu);
+				console.log(menu);
 
-        this.menu = Object.keys(menu.Products).map(key => {
-          return menu.Products[key];
-        })
+				this.menu = Object.keys(menu.Products).map(key => {
+					return menu.Products[key];
+				})
 
-        console.log(this.menu)
+				console.log(this.menu)
 
 
 
-         this.menu.forEach((item) =>{
-          var currentItem = {
-              Name: "",
-              Description: "",
-              Price: "",
-              Crust: "",
-              Size: "",
-            };
+				 this.menu.forEach((item) =>{
+					var currentItem = {
+							Name: "",
+							Description: "",
+							Price: "",
+							Crust: "",
+							Size: "",
+						};
 
-            if(item.ProductType == "Pizza"){
-              for(var i = 0; i < item.Variants.length; i++){
-                var currentItem = {
-                  Name: "",
-                  Description: "",
-                  Price: "",
-                  Crust: "",
-                  Size: ""
-                };
-                currentItem.Description = item.Description;
-                currentItem.Name = menu.Variants[item.Variants[i]].Name;
-                currentItem.Price = menu.Variants[item.Variants[i]].Price;
-                currentItem.Crust = menu.Variants[item.Variants[i]].FlavorCode;
-                currentItem.Size = menu.Variants[item.Variants[i]].SizeCode;
-                this.pizza.push(currentItem);
-              }
-            }
-            else if(item.ProductType == "Pasta"){
-              for(var i = 0; i < item.Variants.length; i++){
-                var currentItem = {
-                  Name: "",
-                  Description: "",
-                  Price: "",
-                  Crust: "",
-                  Size: ""
-                };
-                currentItem.Description = item.Description;
-                currentItem.Name = menu.Variants[item.Variants[i]].Name;
-                currentItem.Price = menu.Variants[item.Variants[i]].Price;
-                this.pasta.push(currentItem);
-              }
-            }
-            else if(item.ProductType == "Wings"){
-              for(var i = 0; i < item.Variants.length; i++){
-                var currentItem = {
-                  Name: "",
-                  Description: "",
-                  Price: "",
-                  Crust: "",
-                  Size: ""
-                };
-                currentItem.Description = item.Description;
-                currentItem.Name = menu.Variants[item.Variants[i]].Name;
-                currentItem.Price = menu.Variants[item.Variants[i]].Price;
-                this.wings.push(currentItem);
-              }
-            }
-            else{
-              for(var i = 0; i < item.Variants.length; i++){
-                var currentItem = {
-                  Name: "",
-                  Description: "",
-                  Price: "",
-                  Crust: "",
-                  Size: ""
-                };
-                currentItem.Description = item.Description;
-                currentItem.Name = menu.Variants[item.Variants[i]].Name;
-                currentItem.Price = menu.Variants[item.Variants[i]].Price;
-                this.sides.push(currentItem);
-              }
-            }
-         })
-        //  console.log("Pizzas: " + this.pizza);
-        //  console.log("Pastas: " + this.pasta);
-        //  console.log("Wings: " + this.wings);
-        //  console.log("Sides: " + this.sides);
-   		})
+						if(item.ProductType == "Pizza"){
+							for(var i = 0; i < item.Variants.length; i++){
+								var currentItem = {
+									Name: "",
+									Description: "",
+									Price: "",
+									Crust: "",
+									Size: ""
+								};
+								currentItem.Description = item.Description;
+								currentItem.Name = menu.Variants[item.Variants[i]].Name;
+								currentItem.Price = menu.Variants[item.Variants[i]].Price;
+								currentItem.Crust = menu.Variants[item.Variants[i]].FlavorCode;
+								currentItem.Size = menu.Variants[item.Variants[i]].SizeCode;
+								this.pizza.push(currentItem);
+							}
+						}
+						else if(item.ProductType == "Pasta"){
+							for(var i = 0; i < item.Variants.length; i++){
+								var currentItem = {
+									Name: "",
+									Description: "",
+									Price: "",
+									Crust: "",
+									Size: ""
+								};
+								currentItem.Description = item.Description;
+								currentItem.Name = menu.Variants[item.Variants[i]].Name;
+								currentItem.Price = menu.Variants[item.Variants[i]].Price;
+								this.pasta.push(currentItem);
+							}
+						}
+						else if(item.ProductType == "Wings"){
+							for(var i = 0; i < item.Variants.length; i++){
+								var currentItem = {
+									Name: "",
+									Description: "",
+									Price: "",
+									Crust: "",
+									Size: ""
+								};
+								currentItem.Description = item.Description;
+								currentItem.Name = menu.Variants[item.Variants[i]].Name;
+								currentItem.Price = menu.Variants[item.Variants[i]].Price;
+								this.wings.push(currentItem);
+							}
+						}
+						else{
+							for(var i = 0; i < item.Variants.length; i++){
+								var currentItem = {
+									Name: "",
+									Description: "",
+									Price: "",
+									Crust: "",
+									Size: ""
+								};
+								currentItem.Description = item.Description;
+								currentItem.Name = menu.Variants[item.Variants[i]].Name;
+								currentItem.Price = menu.Variants[item.Variants[i]].Price;
+								this.sides.push(currentItem);
+							}
+						}
+				 })
+				//  console.log("Pizzas: " + this.pizza);
+				//  console.log("Pastas: " + this.pasta);
+				//  console.log("Wings: " + this.wings);
+				//  console.log("Sides: " + this.sides);
+			})
 	}
 	
 	
 	setCat(category){
 		this.orderCat = category;
-    console.log("Category: " + this.orderCat)
-    
-    this.currentMenu = [];
+		console.log("Category: " + this.orderCat)
+		
+		this.currentMenu = [];
 
 		if(category != "pizza"){
 			this.pizzaCrust = "";
 			this.pizzaSize = "";
-    }
+		}
 
-    if(this.orderCat == "pasta"){
-      this.currentMenu = this.pasta;
-    }
-    else if(this.orderCat == "wings"){
-      this.currentMenu = this.wings;
-    }
-    else if(this.orderCat == "sides"){
-      this.currentMenu = this.sides;
-    }
+		if(this.orderCat == "pasta"){
+			this.currentMenu = this.pasta;
+		}
+		else if(this.orderCat == "wings"){
+			this.currentMenu = this.wings;
+		}
+		else if(this.orderCat == "sides"){
+			this.currentMenu = this.sides;
+		}
 
 	}
 
 	setCrust(crust){
 		this.pizzaCrust = crust;
-    console.log("Crust: " + this.pizzaCrust)
-    
-    this.adjPizza = [];
-    this.pizza.forEach((item) =>{
-      if(item.Crust == crust){
-        this.adjPizza.push(item);
-      }
-    })
+		console.log("Crust: " + this.pizzaCrust)
+		
+		this.adjPizza = [];
+		this.pizza.forEach((item) =>{
+			if(item.Crust == crust){
+				this.adjPizza.push(item);
+			}
+		})
 
-    if(this.pizzaSize != ""){
-      this.setSize(this.pizzaSize);
-    }
+		if(this.pizzaSize != ""){
+			this.setSize(this.pizzaSize);
+		}
 	}
 
 	setSize(size){
 		this.pizzaSize = size;
-    console.log("Size: " + this.pizzaSize);
-    
-    this.currentMenu = [];
+		console.log("Size: " + this.pizzaSize);
+		
+		this.currentMenu = [];
 
-    this.adjPizza.forEach((item) =>{
-      if(item.Size == size){
-        this.currentMenu.push(item);
-      }
-    })
-  }
-  
-  addItem(item){
-    this.currentOrder.push(item);
-    this.currentTotal += parseFloat(item.Price);
-    this.currentTotal = parseFloat(this.currentTotal.toFixed(2));
-  }
+		this.adjPizza.forEach((item) =>{
+			if(item.Size == size){
+				this.currentMenu.push(item);
+			}
+		})
+	}
+	
+	addItem(item){
+		this.currentOrder.push(item);
+		this.currentTotal += parseFloat(item.Price);
+		this.currentTotal = parseFloat(this.currentTotal.toFixed(2));
+	}
 
-  removeItem(item){
-    this.currentOrder.splice(this.currentOrder.indexOf(item), 1);
-    this.currentTotal -= parseFloat(item.Price);
-    this.currentTotal = parseFloat(this.currentTotal.toFixed(2));
-  }
+	removeItem(item){
+		this.currentOrder.splice(this.currentOrder.indexOf(item), 1);
+		this.currentTotal -= parseFloat(item.Price);
+		this.currentTotal = parseFloat(this.currentTotal.toFixed(2));
+	}
 
-  createParty(){
-    this.party.Order = this.currentOrder;
-    this.party.Total = this.currentTotal;
-    this.party.pos = JSON.parse(localStorage.getItem("loc"));
-    console.log(this.party)
-    this.db.createParty(localStorage.getItem('username'), this.party);
-    //Store in database here
-  }
+	createParty(){
+		this.party.Order = this.currentOrder;
+		this.party.Total = this.currentTotal;
+		this.party.pos = JSON.parse(localStorage.getItem("loc"));
+		console.log(this.party)
+		this.db.createParty(localStorage.getItem('username'), this.party);
+		//Store in database here
+	}
 
-	constructor(private db: DatabaseService) {
+	logout(){
+		document.cookie="token=0; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+		this.r.navigateByUrl('');
+	}
+
+	constructor(private db: DatabaseService, private r: Router) {
 		navigator.geolocation.getCurrentPosition((pos) => {
 			var location = {
 				lon: pos.coords.longitude,
 				lat: pos.coords.latitude
 			}
 			localStorage.setItem('loc', JSON.stringify(location));
-      console.log("Location Started")
+			console.log("Location Started")
 			db.getNearbyStores(pos).then((stores) => {
-        console.log(stores);
-        this.allStores = stores;
+				console.log(stores);
+				this.allStores = stores;
 			}).catch((err) => {
 				console.error(err);
 			})

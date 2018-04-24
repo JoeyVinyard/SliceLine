@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DatabaseService } from '../services/database.service';
 
@@ -14,6 +15,9 @@ export class PizzaComponent implements OnInit {
 
 	testArray=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 	parties = [];
+
+	userPin = ("../../assets/UserPin.png");
+	partyPin = ("../../assets/PartyPin.png")
 	
 	sort(criteria, direction){
 		if(criteria == "distance"){
@@ -67,7 +71,12 @@ export class PizzaComponent implements OnInit {
 		}
 	}
 
-	constructor(private db: DatabaseService){
+	logout(){
+		document.cookie="token=0; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+		this.r.navigateByUrl('');
+	}
+
+	constructor(private db: DatabaseService, private r: Router){
 		navigator.geolocation.getCurrentPosition((pos) => {
 			this.lat = pos.coords.latitude;
 			this.lng = pos.coords.longitude;

@@ -1,3 +1,5 @@
+<div id="particles-js"></div>
+
 <div id="topBar" class="medium-12 column">
 	<div id="header">
 		<p id="Title" onClick="parent.location='/'">SliceLine</p>
@@ -12,5 +14,6 @@
 	<input type="password" name="password" class="formInput"[(ngModel)]="password">
 	<p id="formText">Confirm Password:</p>
 	<input type="password" name="confpass" class="formInput"[(ngModel)]="confirm">
+	<p class="error">{{error}}</p>
 	<input type="submit" value="Submit" id="submitButton"(click)="signup()">
 </div>

@@ -6,7 +6,7 @@
 	</div>
 	<div id="mainSection" class="medium-12 column">
 		<div class="medium-4 column">
-			<button class="button topButton">Logout</button>
+			<button (click)="logout()" class="button topButton">Logout</button>
 		</div>
 		<div class="medium-4 column">
 			<p id="Title2">Current Parties</p>
@@ -17,7 +17,7 @@
 		<div id="mapView" class="medium-12 column">
 			<div class="medium-12 column" id="innerMap">
 				<agm-map [latitude]="lat" [longitude]="lng" [minZoom]="15">
-					<agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+					<agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="userPin"></agm-marker>
 				</agm-map>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<div id="listEntries" class="medium-12 column">
-				<div id="listEntry" class="medium-12 column" *ngFor="let party of parties" [ngClass]="{'odd' : num%2==1, 'even' : num%2==0}">
+				<div id="listEntry" class="medium-12 column" *ngFor="let party of parties" [ngClass]="{'odd' : parties.indexOf(party)%2==1, 'even' : parties.indexOf(party)%2==0}">
 					<div id="entrySection" class="medium-2 column">
 						<b><p>{{party.dist}}</p></b>
 					</div>

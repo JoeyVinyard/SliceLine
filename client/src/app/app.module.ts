@@ -10,10 +10,12 @@ import { SignupComponent } from './signup/signup.component';
 import { OrderComponent } from './order/order.component';
 import { PizzaComponent } from './pizza/pizza.component';
 import { SplashComponent } from './splash/splash.component';
-import {DatabaseService } from './services/database.service';
+import { DatabaseService } from './services/database.service';
+import { AuthguardService } from './authguard.service';
 import { ROUTES } from './app.routes';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { PartyComponent } from './party/party.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 		SignupComponent,
 		OrderComponent,
 		PizzaComponent,
-		SplashComponent
+		SplashComponent,
+		PartyComponent
 	],
 	imports: [
 		BrowserModule,
@@ -36,7 +39,10 @@ import { HttpClientModule } from '@angular/common/http';
 			apiKey: 'AIzaSyAYPFjyBz7atRsbr5GyJtlRiBLpu6hcD0A'
 		})
 	],
-	providers: [DatabaseService],
+	providers: [
+		DatabaseService,
+		AuthguardService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -28,52 +28,30 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.get('/', (req, res) => {
-	console.log("here");
-	res.sendFile(__dirname + "/assets/index.html");
-})
-
-app.get('/login', (req, res) => {
-	console.log("here");
-	res.sendFile(__dirname + "/assets/routes/login.html");
-});
-
-app.get('/pizza', (req, res) => {
-	res.sendFile(__dirname + "/assets/routes/pizza.html");
-});
-
-app.get('/order', (req, res) => {
-	res.sendFile(__dirname + "/assets/routes/order.html");
-});
-
-app.get('/pizzapals', (req, res) => {
-	res.send("ahhhhhhhh");
-})
-
-app.get("/signup", (req, res) => {
-	res.sendFile(__dirname + "/assets/routes/signup.html");
-})
-
 app.post('/login', (req, res) => {
 	var log = req.body;
 	if(!log.username || !log.password){
-		console.log("invalid login");
-		res.status(401).send('Failed to provided username password');
+		body.err = 'Failed to provided username password'
+		res.status(401).send(body);
 		return;
 	}
+	var body = {};
 	var hashedPass = passwordHash.generate(log.password);
 	firebase.database().ref("users/" + log.username).once("value").then((user) => {
 		if(user.val() && user.val().password){
 			if(passwordHash.verify(log.password, user.val().password)){
 				console.log("Login succesful");
-				var body = {
-					hash: hashedPass
-				}
+				body.hash = hashedPass;
 				res.status(200).send(body);	
 			}else {
 				console.log("Invalid pass");
-				res.status(401).send("Invalid username and password combination");
+				body.err = "Invalid username and password combination";
+				res.status(200).send(body);
 			}
+		}else{
+			console.log("Invalid pass");
+			body.err = "Invalid username and password combination";
+			res.status(200).send(body);
 		}
 	}).catch((err) =>{
 		console.log(err);
@@ -84,10 +62,13 @@ app.post('/login', (req, res) => {
 app.post("/signup", (req, res) => {
 	console.log(req.body);	
 	var userObject = req.body;
+	var body = {};
 	if(!userObject.username || !userObject.password || !userObject.confpass) {
-		res.status(500).send('Failed to provided username password or password confirmation');
+		body.err = 'Failed to provided username password or password confirmation';
+		res.status(200).send(body);
 	}else if(userObject.password != userObject.confpass){
-		res.status(501).send('Password and Password Confirmation do not match');
+		body.err = "Password and Password Confirmation do not match";
+		res.status(200).send(body);
 	}else {
 		var hashedPass = passwordHash.generate(userObject.password);
 		console.log(hashedPass);
@@ -97,11 +78,11 @@ app.post("/signup", (req, res) => {
 		}
 		firebase.database().ref("users/" + userObject.username).set(userObj).then(() => {
 			console.log("all good");
-			var body = {
-				hash: hashedPass
-			}
+			body.hash = hashedPass;
 			res.status(200).send(body);
-		});
+		}).catch((err) => {
+			res.status(400).send(err);
+		})
 	}	
 })
 
