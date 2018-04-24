@@ -18,6 +18,7 @@
 			<div class="medium-12 column" id="innerMap">
 				<agm-map [latitude]="lat" [longitude]="lng" [minZoom]="15">
 					<agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="userPin"></agm-marker>
+					<agm-marker *ngFor="let party of parties" [latitude]="party.pos.lat" [longitude]="party.pos.lon" [iconUrl]="partyPin"></agm-marker>
 				</agm-map>
 			</div>
 		</div>
@@ -54,7 +55,7 @@
 						<b><p *ngFor="let item of party.order">{{item.Name}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-2 column">
-						<b><p>1/{{party.size}}</p></b>
+						<b><p>{{party.currentUsers}}/{{party.size}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-1 column">
 						<b><p>$ {{party.total}}</p></b>
