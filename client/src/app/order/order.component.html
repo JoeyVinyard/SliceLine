@@ -43,7 +43,7 @@
 			<div class="medium-3 column" id="orderCat" (click)="setCat('wings')" [ngClass]="{'selected' : orderCat=='wings'}">
 				Wings
 			</div>
-			<div class="medium-3 column" id="orderCat" (click)="setCat('other')" [ngClass]="{'selected' : orderCat=='other'}">
+			<div class="medium-3 column" id="orderCat" (click)="setCat('sides')" [ngClass]="{'selected' : orderCat=='sides'}">
 				Sides
 			</div>
 		</div>
@@ -80,14 +80,14 @@
 		</div>
 	</div>
 	<div class="medium-12 column" id="orderProducts">
-	   <div class="medium-6 column" id="product" *ngFor="let prod of testArray">
+	   <div class="medium-6 column" id="product" *ngFor="let prod of currentMenu">
 		  <div class="medium-6 column" id="productInfo">
 			 <div class="medium-12 column" id="prodTop">
-				<b><p>Ultimate Pepperoni</p></b>
-				<p>$12.99</p>
+				<b><p>{{prod.Name}}</p></b>
+				<p>${{prod.Price}}</p>
 			</div>
 			<div class="medium-12 column" id="description">
-				<p id="description">Two layers of pepperoni sandwiched between provolone, Parmesan-Asiago and cheese made with 100% real mozzarella then sprinkled with oregano.</p>
+				<p id="description">{{prod.Description}}</p>
 			</div>
 		</div>
 	</div>
