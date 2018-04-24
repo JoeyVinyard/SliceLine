@@ -129,25 +129,33 @@ app.post('/createParty', (req, res) => {
 });
 
 app.get('/getParties', (req, res) => {
+	var user = req.query.username;
 
-	firebase.database().ref("parties/").once("value").then((data) => {
-		var p = data.val();
-		var parties = [];
-		Object.keys(p).map((index) => {
-			console.log(p[index]);
-			var party = {
-				dist: 20,
-				creator: p[index].creator,
-				total: p[index].party.Total,
-				size: p[index].party.Size,
-				order: p[index].party.Order
-			}
-			console.log(party);
-			parties.push(party);
+	firebase.database().ref("loc/" + user ).once("value").then((loc1) => {
+		var l = {
+			lat: loc1.val().lat,
+			lon: loc2.val().lon
+		}
 
+		firebase.database().ref("parties/").once("value").then((data) => {
+			var p = data.val();
+			var parties = [];
+			Object.keys(p).map((index) => {
+				console.log(p[index]);
+				var party = {
+					dist: 20,
+					creator: p[index].creator,
+					total: p[index].party.Total,
+					size: p[index].party.Size,
+					order: p[index].party.Order,
+					currentUsers: 0
+				}
+				console.log(party);
+				parties.push(party);
+			});
+			res.status(200).send(parties);
 		});
-		res.status(200).send(parties);
-	});
+	})
 });
 
 app.post('/storeLocation', (req, res) => {
@@ -196,5 +204,22 @@ app.listen(3000, () => {
 	console.log("Listening on 3000");
 });
 
+function getDistance(locOne, locTwo){
+	var lat1 = locOne.lat;
+	var lon1 = locOne.lon;
+	var lat2 = locTwo.lat;
+	var lon2 = locTwo.lon;
+	var r = 6371e3;
+	var φ1 = this.toRad(lat1);
+	var φ2 = this.toRad(lat2);
+	var Δφ = this.toRad((lat2-lat1));
+	var Δλ = this.toRad((lon2-lon1));
 
-	
+	var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	var d = (r * c)*3.28084;
+	return d;
+}
+function toRad(val) {
+	return val * Math.PI / 180;
+}

@@ -32,7 +32,8 @@ export class OrderComponent implements OnInit {
     Order: [],
     Size: 0,
     Type: "",
-    Total: 0
+    Total: 0,
+    pos: {}
   }
 
 
@@ -68,7 +69,7 @@ export class OrderComponent implements OnInit {
               Description: "",
               Price: "",
               Crust: "",
-              Size: ""
+              Size: "",
             };
 
             if(item.ProductType == "Pizza"){
@@ -209,6 +210,7 @@ export class OrderComponent implements OnInit {
   createParty(){
     this.party.Order = this.currentOrder;
     this.party.Total = this.currentTotal;
+    this.party.pos = localStorage.getItem("loc");
     console.log(this.party)
     this.db.createParty(localStorage.getItem('username'), this.party);
     //Store in database here
@@ -216,6 +218,11 @@ export class OrderComponent implements OnInit {
 
 	constructor(private db: DatabaseService) {
 		navigator.geolocation.getCurrentPosition((pos) => {
+			var location = {
+				lon: pos.coords.longitude,
+				lat: pos.coords.latitude
+			}
+			localStorage.setItem('location', JSON.stringify(location));
       console.log("Location Started")
 			db.getNearbyStores(pos).then((stores) => {
         console.log(stores);

@@ -87,9 +87,16 @@ export class DatabaseService {
 		})
 	}
 
-	getParties(): Promise<any> {
+	getParties(username): Promise<any> {
+		var options = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+			}),
+			params: new HttpParams()
+				.set("username", username)
+		}
 		return new Promise((resolve, reject) => {
-			this.http.get(this.dbUrl+ "getParties/", this.httpOptions).subscribe((data) => {
+			this.http.get(this.dbUrl+ "getParties/", options).subscribe((data) => {
 				resolve(data);
 			});
 		})

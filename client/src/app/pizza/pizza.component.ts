@@ -71,7 +71,7 @@ export class PizzaComponent implements OnInit {
 			});
 		})
 
-		this.db.getParties().then((data) => {
+		this.db.getParties(localStorage.getItem('username')).then((data) => {
 			this.parties = data;
 			console.log(data);
 		});
