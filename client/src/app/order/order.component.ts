@@ -210,7 +210,7 @@ export class OrderComponent implements OnInit {
   createParty(){
     this.party.Order = this.currentOrder;
     this.party.Total = this.currentTotal;
-    this.party.pos = localStorage.getItem("loc");
+    this.party.pos = JSON.parse(localStorage.getItem("loc"));
     console.log(this.party)
     this.db.createParty(localStorage.getItem('username'), this.party);
     //Store in database here
@@ -222,7 +222,7 @@ export class OrderComponent implements OnInit {
 				lon: pos.coords.longitude,
 				lat: pos.coords.latitude
 			}
-			localStorage.setItem('location', JSON.stringify(location));
+			localStorage.setItem('loc', JSON.stringify(location));
       console.log("Location Started")
 			db.getNearbyStores(pos).then((stores) => {
         console.log(stores);

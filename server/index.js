@@ -130,11 +130,11 @@ app.post('/createParty', (req, res) => {
 
 app.get('/getParties', (req, res) => {
 	var user = req.query.username;
-
+	console.log(user);
 	firebase.database().ref("loc/" + user ).once("value").then((loc1) => {
 		var l = {
 			lat: loc1.val().lat,
-			lon: loc2.val().lon
+			lon: loc1.val().lon
 		}
 
 		firebase.database().ref("parties/").once("value").then((data) => {
@@ -142,19 +142,26 @@ app.get('/getParties', (req, res) => {
 			var parties = [];
 			Object.keys(p).map((index) => {
 				console.log(p[index]);
+				var l2 = {
+					lat: p[index].party.pos.lat,
+					lon: p[index].party.pos.lon
+				}
+				var d = getDistance(l,l2);
 				var party = {
-					dist: 20,
+					dist: d,
 					creator: p[index].creator,
 					total: p[index].party.Total,
 					size: p[index].party.Size,
 					order: p[index].party.Order,
-					currentUsers: 0
+					currentUsers: 0,
+					pos: p[index].party.pos
 				}
-				console.log(party);
 				parties.push(party);
 			});
 			res.status(200).send(parties);
 		});
+	}).catch((err) => {
+		console.log(err);
 	})
 });
 
@@ -210,10 +217,10 @@ function getDistance(locOne, locTwo){
 	var lat2 = locTwo.lat;
 	var lon2 = locTwo.lon;
 	var r = 6371e3;
-	var φ1 = this.toRad(lat1);
-	var φ2 = this.toRad(lat2);
-	var Δφ = this.toRad((lat2-lat1));
-	var Δλ = this.toRad((lon2-lon1));
+	var φ1 = toRad(lat1);
+	var φ2 = toRad(lat2);
+	var Δφ = toRad((lat2-lat1));
+	var Δλ = toRad((lon2-lon1));
 
 	var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) + Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ/2) * Math.sin(Δλ/2);
 	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
