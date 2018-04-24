@@ -101,6 +101,24 @@ export class DatabaseService {
 			});
 		})
 	}
+
+	getStoreMenu(id: number): Promise<any>{
+		var options = {
+			headers: new HttpHeaders({
+				'Content-Type':  'application/json',
+			}),
+			params: new HttpParams()
+				.set("id", id.toString())
+		}
+		return new Promise((resolve, reject) => {
+			this.http.get(this.dbUrl+ "getStoreMenu", options).subscribe((data) => {
+				if(data)
+					resolve(data);
+				else
+					reject(data["err"]);
+			});
+		})
+	}
 	constructor(private http: HttpClient) {}
 
 }
