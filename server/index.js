@@ -130,6 +130,22 @@ app.post('/createParty', (req, res) => {
 
 app.get('/getParties', (req, res) => {
 
+	firebase.database().ref("parties/").once("value").then((data) => {
+		var p = data.val();
+		var parties = [];
+		Object.keys(p).map((index) => {
+			var party = {
+				dist: 20,
+				creator: p[index].creator,
+				total: p[index].party.Total,
+				size: p[index].party.Size
+			}
+			console.log(party);
+			parties.push(party);
+
+		});
+		res.status(200).send(parties);
+	});
 });
 
 app.post('/storeLocation', (req, res) => {

@@ -210,6 +210,7 @@ export class OrderComponent implements OnInit {
     this.party.Order = this.currentOrder;
     this.party.Total = this.currentTotal;
     console.log(this.party)
+    this.db.createParty(localStorage.getItem('username'), this.party);
     //Store in database here
   }
 
