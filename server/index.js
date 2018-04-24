@@ -66,7 +66,10 @@ app.post('/login', (req, res) => {
 		if(user.val() && user.val().password){
 			if(passwordHash.verify(log.password, user.val().password)){
 				console.log("Login succesful");
-				res.status(200).send(hashedPass);	
+				var body = {
+					hash: hashedPass
+				}
+				res.status(200).send(body);	
 			}else {
 				console.log("Invalid pass");
 				res.status(401).send("Invalid username and password combination");
@@ -114,6 +117,16 @@ app.get('/getNearbyStores', (req, res) => {
 	})
 })
 
+app.post('/createParty', (req, res) => {
+	obj = req.body;
+	console.log(obj);
+	var v = firebase.database().ref("parties/").push(obj);
+	v.then(() => {
+		firebase.database().ref("parties/" + v.key + "/partyID").set(v.key).then((data) => {
+			res.status(200).send({Resp: "all good in da hood"});
+		})
+	})
+});
 
 app.get('/getParties', (req, res) => {
 
@@ -123,7 +136,7 @@ app.post('/storeLocation', (req, res) => {
 	var obj = req.body;
 	console.log("location object", obj);
 
-	firebase.database().ref("locations/" + obj.username).set(obj).then(() => {
+	firebase.database().ref("loc/" + obj.username).set(obj).then(() => {
 		var ret = {
 			message: "location stored"
 		}
@@ -133,9 +146,9 @@ app.post('/storeLocation', (req, res) => {
 });
 
 app.get('/getLocation', (req, res) => {
-	var obj = req.body;
+	console.log(req);
 	console.log("getLocation: ", obj);
-	firebase.database().ref("locations/" + obj.username).once("value").then((locObj)=> {
+	firebase.database().ref("loc/" + obj.username).once("value").then((locObj)=> {
 		if(locObj.val())
 			res.status(200).send(locObj.val());
 		else{
