@@ -21,12 +21,15 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('username', this.username);
 				this.r.navigateByUrl('/pizza');
 			}else{
-				console.log('aaaa')
 				this.error = "Username or password incorrect";
 			}
 		})
 	}
-	constructor(private db: DatabaseService, private r: Router) { }
+	constructor(private db: DatabaseService, private r: Router) {
+		particlesJS.load('particles-js', 'assets/particles.json', function() {
+			console.log('callback - particles.js config loaded');
+		});
+	}
 
 	ngOnInit() {
 	}

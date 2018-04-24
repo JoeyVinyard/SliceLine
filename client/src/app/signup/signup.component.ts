@@ -28,7 +28,11 @@ export class SignupComponent implements OnInit {
 		})
 	}
 
-	constructor(private db: DatabaseService, private r: Router) {}
+	constructor(private db: DatabaseService, private r: Router) {
+		particlesJS.load('particles-js', 'assets/particles.json', function() {
+			console.log('callback - particles.js config loaded');
+		});
+	}
 
 	ngOnInit() {}
 }
