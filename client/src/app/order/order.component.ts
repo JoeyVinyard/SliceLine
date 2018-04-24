@@ -23,11 +23,19 @@ export class OrderComponent implements OnInit {
 
   currentMenu = [];
 
+  adjPizza = [];
+
 	testArray=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
 
 	setStore(storeID){
-		this.selectedStore = storeID;
+    this.selectedStore = storeID;
+    
+    this.orderCat = "";
+    this.pizzaCrust = "";
+    this.pizzaSize = "";
+    this.currentMenu = [];
+
    		console.log("Current Store: " + this.selectedStore);
    		this.db.getStoreMenu(storeID).then((menu) => {
         this.menu = [];
@@ -128,17 +136,16 @@ export class OrderComponent implements OnInit {
 	
 	setCat(category){
 		this.orderCat = category;
-		console.log("Category: " + this.orderCat)
+    console.log("Category: " + this.orderCat)
+    
+    this.currentMenu = [];
 
 		if(category != "pizza"){
 			this.pizzaCrust = "";
 			this.pizzaSize = "";
     }
 
-    if(this.orderCat == "pizza"){
-      this.currentMenu = this.pizza;
-    }
-    else if(this.orderCat == "pasta"){
+    if(this.orderCat == "pasta"){
       this.currentMenu = this.pasta;
     }
     else if(this.orderCat == "wings"){
@@ -152,16 +159,31 @@ export class OrderComponent implements OnInit {
 
 	setCrust(crust){
 		this.pizzaCrust = crust;
-		console.log("Crust: " + this.pizzaCrust)
+    console.log("Crust: " + this.pizzaCrust)
+    
+    this.adjPizza = [];
+    this.pizza.forEach((item) =>{
+      if(item.Crust == crust){
+        this.adjPizza.push(item);
+      }
+    })
 
-		//get all items with FlavorCode from Varients here
+    if(this.pizzaSize != ""){
+      this.setSize(this.pizzaSize);
+    }
 	}
 
 	setSize(size){
 		this.pizzaSize = size;
-		console.log("Size: " + this.pizzaSize)
+    console.log("Size: " + this.pizzaSize);
+    
+    this.currentMenu = [];
 
-		// filter results based on SizeCode
+    this.adjPizza.forEach((item) =>{
+      if(item.Size == size){
+        this.currentMenu.push(item);
+      }
+    })
 	}
 
 	constructor(private db: DatabaseService) {
