@@ -66,6 +66,9 @@ export class PizzaComponent implements OnInit {
 			}).catch((err) => {
 				console.error(err);
 			})
+			db.storeLocation(localStorage.getItem('username'), pos).then(() => {
+				console.log("location stored");
+			});
 		})
 	}
 
