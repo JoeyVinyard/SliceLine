@@ -117,8 +117,15 @@ app.get('/getNearbyStores', (req, res) => {
 	})
 })
 
-app.post('/createParties', (req, res) => {
-
+app.post('/createParty', (req, res) => {
+	obj = req.body;
+	console.log(obj);
+	var v = firebase.database().ref("parties/").push(obj);
+	v.then(() => {
+		firebase.database().ref("parties/" + v.key + "/partyID").set(v.key).then((data) => {
+			res.status(200).send({Resp: "all good in da hood"});
+		})
+	})
 });
 
 app.get('/getParties', (req, res) => {

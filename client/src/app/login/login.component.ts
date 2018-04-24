@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     console.log("does this happen");
+  
     this.db.login(this.username, this.password).then((data) => {
       console.log(data);
       if(true/*I"ll confirm login was succesful here tomorros*/){

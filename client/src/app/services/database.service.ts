@@ -72,13 +72,17 @@ export class DatabaseService {
 		})
 	}
 
-	createParty(username: String, party): Promise<any> {
+	createParty(username: String, party: any): Promise<any> {
+		console.log(party)
 		return new Promise((resolve, reject) => {
-			this.http.get(this.dbUrl+ "createParty/"+username, this.httpOptions).subscribe((data) => {
-				if(data["payload"])
-					resolve(data["payload"]);
-				else
-					reject(data["err"]);
+			var partyobj = {
+				creator: username,
+				party: party
+			}
+			console.log(partyobj);
+			this.http.post(this.dbUrl+ "createParty/", JSON.stringify(partyobj), this.httpOptions).subscribe((data) => {
+				console.log(data);
+				resolve(data);
 			});
 		})
 	}
@@ -86,10 +90,7 @@ export class DatabaseService {
 	getParties(): Promise<any> {
 		return new Promise((resolve, reject) => {
 			this.http.get(this.dbUrl+ "getParties/", this.httpOptions).subscribe((data) => {
-				if(data["payload"])
-					resolve(data["payload"]);
-				else
-					reject(data["err"]);
+				resolve(data);
 			});
 		})
 	}
