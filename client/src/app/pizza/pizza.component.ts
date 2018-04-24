@@ -18,14 +18,23 @@ export class PizzaComponent implements OnInit {
 	sort(criteria, direction){
 		if(criteria == "distance"){
 			if(direction == "up"){
+				this.parties.sort( function(a,b) {
+					return a.dist - b.dist;
+				});
 				console.log("Distance Up")
 			}
 			else if(direction == "down"){
 				console.log("Distance Down")
+				this.parties.sort( function(a,b) {
+					return b.dist - a.dist;
+				});
 			}
 		}
 		else if(criteria == "size"){
 			if(direction == "up"){
+				this.parties.sort( function(a , b) {
+					return 0;
+				})
 				console.log("Size Up")
 			}
 			else if(direction == "down"){
