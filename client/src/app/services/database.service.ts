@@ -63,16 +63,24 @@ export class DatabaseService {
 			}
 							
 			this.http.post(this.dbUrl+ "storeLocation", JSON.stringify(locationObject), this.httpOptions).subscribe((data) => {
-				if(data["payload"])
-					resolve(data["payload"]);
-				else
-					reject(data["err"]);
+				resolve(data);				
 			});
 		});
 	}
 
 	getLocation(username: String): Promise<any>{
 		console.log("Getting location")
+		return new Promise((resolve, reject) => {
+			this.http.get(this.dbUrl+ "getLocation/"+username, this.httpOptions).subscribe((data) => {
+				if(data["payload"])
+					resolve(data["payload"]);
+				else
+					reject(data["err"]);
+			});
+		})
+	}
+
+	createParty(username: String, party): Promise<any> {
 		return new Promise((resolve, reject) => {
 			this.http.get(this.dbUrl+ "getLocation/"+username, this.httpOptions).subscribe((data) => {
 				if(data["payload"])
