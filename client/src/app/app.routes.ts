@@ -6,6 +6,8 @@ import { OrderComponent } from './order/order.component';
 import { PizzaComponent } from './pizza/pizza.component';
 import { SplashComponent } from './splash/splash.component';
 
+import { AuthguardService } from './authguard.service';
+
 export const ROUTES: Routes = [
 	{
 		path: "",
@@ -14,7 +16,7 @@ export const ROUTES: Routes = [
 	{
 		path: "login",
 		component: LoginComponent,
-		// canActivate: [AuthGuard]
+		canActivate: [AuthguardService]
 	},
 	{
 		path: "order",
