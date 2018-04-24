@@ -109,14 +109,11 @@ app.get('/getNearbyStores', (req, res) => {
 		console.log(address);
 		pizza.Util.findNearbyStores(address, "Delivery", (store) => {
 			res.status(200).send(store.result.Stores);
-			// var myStore = new pizza.Store(store.result.Stores[0].StoreID);
-			// myStore.ID=store.result.Stores[0].StoreID;
-			// myStore.getMenu((storeData) => {
-			// 	res.status(200)
-			// });
+
 		})
 	})
 })
+
 
 app.get('/getParties', (req, res) => {
 
@@ -148,6 +145,14 @@ app.get('/getLocation', (req, res) => {
 			res.status(500).send(error);
 		}
 		return;
+	});
+});
+
+app.get('/getStoreMenu', (req, res) => {
+	var myStore = new pizza.Store(req.query.id);
+	myStore.ID=req.query.id;
+	myStore.getMenu((storeData) => {
+		res.status(200).send(storeData.result);
 	});
 });
 

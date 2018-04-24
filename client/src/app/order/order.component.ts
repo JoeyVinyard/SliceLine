@@ -18,9 +18,12 @@ export class OrderComponent implements OnInit {
 	testArray=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
 
-	setStore(number){
-		this.selectedStore = number;
-    console.log("Current Store: " + this.selectedStore);
+	setStore(storeID){
+		this.selectedStore = storeID;
+   		console.log("Current Store: " + this.selectedStore);
+   		this.db.getStoreMenu(storeID).then((menu) => {
+   			console.log(menu);
+   		})
 		//call menu from here
 	}
 	
