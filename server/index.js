@@ -227,6 +227,7 @@ function getDistance(locOne, locTwo){
 	var d = (r * c)*3.28084;
 	return d;
 }
+
 function toRad(val) {
 	return val * Math.PI / 180;
 }
