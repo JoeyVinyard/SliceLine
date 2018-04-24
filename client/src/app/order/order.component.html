@@ -80,7 +80,7 @@
 		</div>
 	</div>
 	<div class="medium-12 column" id="orderProducts">
-	   <div class="medium-6 column" id="product" *ngFor="let prod of currentMenu">
+	   <div class="medium-6 column" id="product" *ngFor="let prod of currentMenu" (click)="addItem(prod)">
 		  <div class="medium-6 column" id="productInfo">
 			 <div class="medium-12 column" id="prodTop">
 				<b><p>{{prod.Name}}</p></b>
@@ -99,19 +99,19 @@
 	   <u><b><p id="Title3">Order</p></b></u>
    </div>
    <div class="medium-12 column" id="totalList">
-	   <div class="medium-12 column" id="orderEntry" *ngFor="let ent of testArray">
+	   <div class="medium-12 column" id="orderEntry" *ngFor="let ent of currentOrder" (click)="removeItem(ent)">
 		  <div class="medium-8 column" id="entryInfo">
-			 <b><p>Ultimate Pepperoni</p></b>
-			 <p>Crust: Hand Tossed</p>
-			 <p>Size: Medium</p>
+			 <b><p>{{ent.Name}}</p></b>
+			 <!-- <p>Crust: Hand Tossed</p>
+			 <p>Size: Medium</p> -->
 		 </div>
 		 <div class="medium-4 column" id="entryPrice">
-			 <b><p>$12.99</p></b>
+			 <b><p>{{ent.Price}}</p></b>
 		 </div>
 	 </div>
  </div>
  <div class="medium-12 column" id="totalBottom">
-  <u><b><p id="Title3">Total: $12.99</p></b></u>
+  <u><b><p id="Title3">Total: ${{currentTotal}}</p></b></u>
 </div>
 </div>
 
@@ -119,14 +119,14 @@
 <div id="specView" class="medium-12 column">
 	<div class="medium-6 column">
 		<p>Delivery or Carryout:</p>
-		<select>
+		<select [(ngModel)]="party.Type">
 			<option>Delivery</option>
 			<option>Carryout</option>
 		</select>
 	</div>
 	<div class="medium-6 column">
 		<p>Party Size:</p>
-		<select>
+		<select [(ngModel)]="party.Size">
 		  <option>2</option>
 		  <option>3</option>
 		  <option>4</option>
@@ -138,7 +138,7 @@
   </div>
 </div>
 <div class="medium-12 column">
-	<button class="button bottomButton">Create Party</button>
+	<button class="button bottomButton" (click)="createParty()">Create Party</button>
 </div>
 </div>
 

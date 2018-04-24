@@ -22,10 +22,17 @@ export class OrderComponent implements OnInit {
   sides = [];
 
   currentMenu = [];
+  currentOrder = [];
+  currentTotal = 0;
 
   adjPizza = [];
 
-	testArray=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+
+  party = {
+    Order: [],
+    Size: 0,
+    Type: ""
+  }
 
 
 	setStore(storeID){
@@ -126,10 +133,10 @@ export class OrderComponent implements OnInit {
               }
             }
          })
-         console.log("Pizzas: " + this.pizza);
-         console.log("Pastas: " + this.pasta);
-         console.log("Wings: " + this.wings);
-         console.log("Sides: " + this.sides);
+        //  console.log("Pizzas: " + this.pizza);
+        //  console.log("Pastas: " + this.pasta);
+        //  console.log("Wings: " + this.wings);
+        //  console.log("Sides: " + this.sides);
    		})
 	}
 	
@@ -184,7 +191,25 @@ export class OrderComponent implements OnInit {
         this.currentMenu.push(item);
       }
     })
-	}
+  }
+  
+  addItem(item){
+    this.currentOrder.push(item);
+    this.currentTotal += parseFloat(item.Price);
+    this.currentTotal = parseFloat(this.currentTotal.toFixed(2));
+  }
+
+  removeItem(item){
+    this.currentOrder.splice(this.currentOrder.indexOf(item), 1);
+    this.currentTotal -= parseFloat(item.Price);
+    this.currentTotal = parseFloat(this.currentTotal.toFixed(2));
+  }
+
+  createParty(){
+    this.party.Order = this.currentOrder;
+    console.log(this.party)
+    //Store in database here
+  }
 
 	constructor(private db: DatabaseService) {
 		navigator.geolocation.getCurrentPosition((pos) => {
