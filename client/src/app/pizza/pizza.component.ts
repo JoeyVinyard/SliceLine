@@ -13,7 +13,7 @@ export class PizzaComponent implements OnInit {
 	lng: number;
 
 	testArray=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-
+	parties = [];
 	sort(criteria, direction){
 		if(criteria == "distance"){
 			if(direction == "up"){
@@ -66,7 +66,15 @@ export class PizzaComponent implements OnInit {
 			}).catch((err) => {
 				console.error(err);
 			})
+			db.storeLocation(localStorage.getItem('username'), pos).then(() => {
+				console.log("location stored");
+			});
 		})
+
+		this.db.getParties().then((data) => {
+			this.parties = data;
+			console.log(data);
+		});
 	}
 
 	ngOnInit() {

@@ -43,12 +43,12 @@
 				</div>
 			</div>
 			<div id="listEntries" class="medium-12 column">
-				<div id="listEntry" class="medium-12 column" *ngFor="let num of testArray" [ngClass]="{'odd' : num%2==1, 'even' : num%2==0}">
+				<div id="listEntry" class="medium-12 column" *ngFor="let num of parties" [ngClass]="{'odd' : num%2==1, 'even' : num%2==0}">
 					<div id="entrySection" class="medium-2 column">
-						<b><p>0.25 miles</p></b>
+						<b><p>{{num.dist}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-2 column">
-						<b><p>Small</p></b>
+						<b><p>{{num.size}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-3 column">
 						<b><p>Extra Cheese, Pepperoni</p></b>
@@ -57,7 +57,7 @@
 						<b><p>1/2</p></b>
 					</div>
 					<div id="entrySection" class="medium-2 column">
-						<b><p>$4.50</p></b>
+						<b><p>$ {{num.total}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-1 column joinSection">
 						<b><p>Join</p></b>

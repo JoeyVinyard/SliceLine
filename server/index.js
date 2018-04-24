@@ -66,7 +66,10 @@ app.post('/login', (req, res) => {
 		if(user.val() && user.val().password){
 			if(passwordHash.verify(log.password, user.val().password)){
 				console.log("Login succesful");
-				res.status(200).send("You succesfully logged in! Now go find some pizza to eat");	
+				var body = {
+					hash: hashedPass
+				}
+				res.status(200).send(body);	
 			}else {
 				console.log("Invalid pass");
 				res.status(401).send("Invalid username and password combination");
@@ -93,7 +96,11 @@ app.post("/signup", (req, res) => {
 			password: hashedPass
 		}
 		firebase.database().ref("users/" + userObject.username).set(userObj).then(() => {
-			res.status(200).send(hashedPass);
+			console.log("all good");
+			var body = {
+				hash: hashedPass
+			}
+			res.status(200).send(body);
 		});
 	}	
 })
@@ -109,6 +116,66 @@ app.get('/getNearbyStores', (req, res) => {
 		})
 	})
 })
+
+app.post('/createParty', (req, res) => {
+	obj = req.body;
+	console.log(obj);
+	var v = firebase.database().ref("parties/").push(obj);
+	v.then(() => {
+		firebase.database().ref("parties/" + v.key + "/partyID").set(v.key).then((data) => {
+			res.status(200).send({Resp: "all good in da hood"});
+		})
+	})
+});
+
+app.get('/getParties', (req, res) => {
+
+	firebase.database().ref("parties/").once("value").then((data) => {
+		var p = data.val();
+		var parties = [];
+		Object.keys(p).map((index) => {
+			var party = {
+				dist: 20,
+				creator: p[index].creator,
+				total: p[index].party.Total,
+				size: p[index].party.Size
+			}
+			console.log(party);
+			parties.push(party);
+
+		});
+		res.status(200).send(parties);
+	});
+});
+
+app.post('/storeLocation', (req, res) => {
+	var obj = req.body;
+	console.log("location object", obj);
+
+	firebase.database().ref("loc/" + obj.username).set(obj).then(() => {
+		var ret = {
+			message: "location stored"
+		}
+
+		res.status(200).send(ret);
+	});
+});
+
+app.get('/getLocation', (req, res) => {
+	console.log(req);
+	console.log("getLocation: ", obj);
+	firebase.database().ref("loc/" + obj.username).once("value").then((locObj)=> {
+		if(locObj.val())
+			res.status(200).send(locObj.val());
+		else{
+			var error = {
+				message: "user not found"
+			}
+			res.status(500).send(error);
+		}
+		return;
+	});
+});
 
 app.get('/getStoreMenu', (req, res) => {
 	var myStore = new pizza.Store(req.query.id);

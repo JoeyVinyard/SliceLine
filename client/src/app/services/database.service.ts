@@ -23,6 +23,7 @@ export class DatabaseService {
 			};
 			console.log("sending");
 			this.http.post(this.dbUrl + "login", JSON.stringify(loginObject), this.httpOptions).subscribe((data) => {
+				resolve(data);
 				console.log(data);
 			});
 			//this.http.post()
@@ -47,26 +48,16 @@ export class DatabaseService {
 
 
 	
-	storeLocation(loc, username): Promise<any>{
+	storeLocation(username, pos: Position): Promise<any>{
 		return new Promise((resolve, reject) => {
 			var locationObject = {
-				lat: 0,
-				lon: 0,
-				uid: ""
+				username: username,
+				lat: pos.coords.latitude.toString(),
+				lon: pos.coords.longitude.toString()
 			}
-			if(!!loc.latitude && !!loc.longitude){
-				locationObject.lat = loc.latitude;
-				locationObject.lon = loc.longitude;
-				locationObject.uid = username;
-			}else{
-				reject("Invalid location object");
-			}
-							
+			console.log(locationObject);
 			this.http.post(this.dbUrl+ "storeLocation", JSON.stringify(locationObject), this.httpOptions).subscribe((data) => {
-				if(data["payload"])
-					resolve(data["payload"]);
-				else
-					reject(data["err"]);
+				resolve(data);				
 			});
 		});
 	}
@@ -75,10 +66,31 @@ export class DatabaseService {
 		console.log("Getting location")
 		return new Promise((resolve, reject) => {
 			this.http.get(this.dbUrl+ "getLocation/"+username, this.httpOptions).subscribe((data) => {
-				if(data["payload"])
-					resolve(data["payload"]);
-				else
-					reject(data["err"]);
+				resolve(data);
+				return;
+			});
+		})
+	}
+
+	createParty(username: String, party: any): Promise<any> {
+		console.log(party)
+		return new Promise((resolve, reject) => {
+			var partyobj = {
+				creator: username,
+				party: party
+			}
+			console.log(partyobj);
+			this.http.post(this.dbUrl+ "createParty/", JSON.stringify(partyobj), this.httpOptions).subscribe((data) => {
+				console.log(data);
+				resolve(data);
+			});
+		})
+	}
+
+	getParties(): Promise<any> {
+		return new Promise((resolve, reject) => {
+			this.http.get(this.dbUrl+ "getParties/", this.httpOptions).subscribe((data) => {
+				resolve(data);
 			});
 		})
 	}
