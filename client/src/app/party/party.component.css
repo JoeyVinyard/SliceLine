@@ -61,6 +61,42 @@
     /* margin-top: 1vw; */
     background: rgba(250, 180, 34, 0.5);
     overflow: hidden;
+    padding: 0px;
+}
+
+#detailContent{
+    width: 100%;
+    height: auto;
+    font-size: 2vw;
+    border-bottom: 1px solid white;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+}
+
+#orderContent{
+    width: 100%;
+    height: auto;
+    font-size: 2vw;
+    border-bottom: 1px solid white;
+    margin: 0px;
+    padding: 0px;
+    color: white;
+}
+
+#detailContent p{
+    margin: 0px;
+    padding: 0px;
+}
+
+#orderContent p{
+    margin: 0px;
+    padding: 0px;
+}
+
+#details{
+    height: 55vh;
+    overflow: scroll;
 }
 
 #partyChat{
@@ -72,6 +108,7 @@
     border-top-right-radius: 25px;
     /* margin-top: 1vw; */
     background: rgba(250, 180, 34, 0.25);
+    padding-top: 1%;
 }
 
 #leaveDiv{
@@ -106,7 +143,7 @@
 #responseText{
     /* width: 90%; */
     height: 100%;
-    background: transparent;
+    background: rgba(250, 180, 34, 0.25);
     color: white;
     margin: 0px;
 }
@@ -144,9 +181,39 @@
     color: white;
     font-family: 'Lobster', cursive;
     /* cursor: pointer; */
+    margin: 0px;
 }
 
-#header{
+#header2{
     background: #FAB422;
     height: 10%;
+}
+
+#message{
+	width: 25%;
+	height: auto;
+	color: #B12029;
+	padding-left: 2.5%;
+	padding-top: 1%;
+	word-wrap: break-word;
+}
+
+.messageLeft{
+	margin-left: 5%;
+	background: #f4f4f4;
+	border: 2px solid #dbdbdb;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+	margin-bottom: 1%;
+}
+
+.messageRight{
+	margin-left: 70%;
+	background: #FAB422;
+	border: 2px solid #8d1920;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	border-bottom-left-radius: 25px;
+	margin-bottom: 1%;
 }
