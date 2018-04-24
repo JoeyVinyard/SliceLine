@@ -15,6 +15,7 @@ import { AuthguardService } from './authguard.service';
 import { ROUTES } from './app.routes';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { PartyComponent } from './party/party.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
 		SignupComponent,
 		OrderComponent,
 		PizzaComponent,
-		SplashComponent
+		SplashComponent,
+		PartyComponent
 	],
 	imports: [
 		BrowserModule,

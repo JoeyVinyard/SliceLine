@@ -11,6 +11,7 @@
 		<input type="text" [(ngModel)]="username" name="username" class="formInput" > 
 		<p id="formText">Password:</p>
 		<input type="password" name="password" class="formInput" [(ngModel)]="password">
+		<p class="error">{{error}}</p>
 		<input type="submit" value="Submit" id="submitButton" (click)="login()">
 	
 	</div>

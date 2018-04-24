@@ -15,7 +15,6 @@ export class DatabaseService {
 
 	//Create user profile in firebase based on the User object. Returns a promise to the snapshot of the data posted, or an error message
 	login(username: String, pass: String): Promise<any> {
-		console.log("Wooo");
 		return new Promise((resolve, reject) => {
 			var loginObject = {
 				username: username,
@@ -24,30 +23,22 @@ export class DatabaseService {
 			console.log("sending");
 			this.http.post(this.dbUrl + "login", JSON.stringify(loginObject), this.httpOptions).subscribe((data) => {
 				resolve(data);
-				console.log(data);
 			});
-			//this.http.post()
 		});
 	}
 
 	signup(username: String, pass: String, confirm: String): Promise<any> {
-		console.log("Wooo");
 		return new Promise((resolve, reject) => {
 			var loginObject = {
 				username: username,
 				password: pass,
 				confpass: confirm
 			};
-			console.log("sending");
 			this.http.post(this.dbUrl + "signup", JSON.stringify(loginObject), this.httpOptions).subscribe((data) => {
-				console.log(data);
+				resolve(data);
 			});
-			//this.http.post()
 		});
 	}
-
-
-	
 	storeLocation(username, pos: Position): Promise<any>{
 		return new Promise((resolve, reject) => {
 			var locationObject = {

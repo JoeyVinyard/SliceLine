@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { DatabaseService } from '../services/database.service';
 
@@ -57,7 +58,12 @@ export class PizzaComponent implements OnInit {
 		}
 	}
 
-	constructor(private db: DatabaseService){
+	logout(){
+		document.cookie="token=0; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+		this.r.navigateByUrl('');
+	}
+
+	constructor(private db: DatabaseService, private r: Router){
 		navigator.geolocation.getCurrentPosition((pos) => {
 			this.lat = pos.coords.latitude;
 			this.lng = pos.coords.longitude;
