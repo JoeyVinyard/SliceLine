@@ -27,15 +27,15 @@
 					<b><p>Distance	<i class="fa fa-long-arrow-down" (click)="sort('distance', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('distance', 'up')"></i></p></b>
 				</div>
 				<div id="listHeader" class="medium-2 column">
-					<b><p>Size	<i class="fa fa-long-arrow-down" (click)="sort('size', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('size', 'up')"></i></p></b>
+					<b><p>Items	<i class="fa fa-long-arrow-down" (click)="sort('size', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('size', 'up')"></i></p></b>
 				</div>
-				<div id="listHeader" class="medium-3 column">
-					<b><p>Pizza	<i class="fa fa-long-arrow-down" (click)="sort('pizza', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('pizza', 'up')"></i></p></b>
+				<div id="listHeader" class="medium-4 column">
+					<b><p>Order	<i class="fa fa-long-arrow-down" (click)="sort('pizza', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('pizza', 'up')"></i></p></b>
 				</div>
 				<div id="listHeader" class="medium-2 column">
 					<b><p>Group Size	<i class="fa fa-long-arrow-down" (click)="sort('group', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('group', 'up')"></i></p></b>
 				</div>
-				<div id="listHeader" class="medium-2 column">
+				<div id="listHeader" class="medium-1 column">
 					<b><p>Cost	<i class="fa fa-long-arrow-down" (click)="sort('cost', 'down')"></i><i class="fa fa-long-arrow-up" (click)="sort('cost', 'up')"></i></p></b>
 				</div>
 				<div id="listHeader" class="medium-1 column">
@@ -43,21 +43,21 @@
 				</div>
 			</div>
 			<div id="listEntries" class="medium-12 column">
-				<div id="listEntry" class="medium-12 column" *ngFor="let num of parties" [ngClass]="{'odd' : num%2==1, 'even' : num%2==0}">
+				<div id="listEntry" class="medium-12 column" *ngFor="let party of parties" [ngClass]="{'odd' : num%2==1, 'even' : num%2==0}">
 					<div id="entrySection" class="medium-2 column">
-						<b><p>{{num.dist}}</p></b>
+						<b><p>{{party.dist}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-2 column">
-						<b><p>{{num.size}}</p></b>
+						<b><p>{{party.order.length}}</p></b>
 					</div>
-					<div id="entrySection" class="medium-3 column">
-						<b><p>Extra Cheese, Pepperoni</p></b>
-					</div>
-					<div id="entrySection" class="medium-2 column">
-						<b><p>1/2</p></b>
+					<div id="entrySection" class="medium-4 column">
+						<b><p *ngFor="let item of party.order">{{item.Name}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-2 column">
-						<b><p>$ {{num.total}}</p></b>
+						<b><p>1/{{party.size}}</p></b>
+					</div>
+					<div id="entrySection" class="medium-1 column">
+						<b><p>$ {{party.total}}</p></b>
 					</div>
 					<div id="entrySection" class="medium-1 column joinSection">
 						<b><p>Join</p></b>
