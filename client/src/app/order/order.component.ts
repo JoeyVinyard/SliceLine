@@ -31,7 +31,8 @@ export class OrderComponent implements OnInit {
   party = {
     Order: [],
     Size: 0,
-    Type: ""
+    Type: "",
+    Total: 0
   }
 
 
@@ -207,6 +208,7 @@ export class OrderComponent implements OnInit {
 
   createParty(){
     this.party.Order = this.currentOrder;
+    this.party.Total = this.currentTotal;
     console.log(this.party)
     //Store in database here
   }
