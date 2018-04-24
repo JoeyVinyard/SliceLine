@@ -134,11 +134,13 @@ app.get('/getParties', (req, res) => {
 		var p = data.val();
 		var parties = [];
 		Object.keys(p).map((index) => {
+			console.log(p[index]);
 			var party = {
 				dist: 20,
 				creator: p[index].creator,
 				total: p[index].party.Total,
-				size: p[index].party.Size
+				size: p[index].party.Size,
+				order: p[index].party.Order
 			}
 			console.log(party);
 			parties.push(party);
