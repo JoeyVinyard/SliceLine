@@ -81,7 +81,7 @@ export class DatabaseService {
 	joinParty(username, partyID): Promise<any> {
 		return new Promise((resolve, reject) => {
 			var joinObj = {
-				user: username,
+				username: username,
 				partyID: partyID
 			}
 			this.http.post(this.dbUrl+ "joinParty/", JSON.stringify(joinObj), this.httpOptions).subscribe((data) => {

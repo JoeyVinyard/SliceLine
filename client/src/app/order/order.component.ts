@@ -32,7 +32,8 @@ export class OrderComponent implements OnInit {
 		Size: 0,
 		Type: "",
 		Total: 0,
-		pos: {}
+		pos: {},
+		people: []
 	}
 
 
@@ -210,6 +211,7 @@ export class OrderComponent implements OnInit {
 		this.party.Order = this.currentOrder;
 		this.party.Total = this.currentTotal;
 		this.party.pos = JSON.parse(localStorage.getItem("loc"));
+		this.party.people.push(localStorage.getItem('username'));
 		console.log(this.party)
 		this.db.createParty(localStorage.getItem('username'), this.party);
 		this.r.navigateByUrl('/party');

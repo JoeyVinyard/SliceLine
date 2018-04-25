@@ -138,7 +138,8 @@ app.get('/getParties', (req, res) => {
 					order: p[index].party.Order,
 					currentUsers: 0,
 					pos: p[index].party.pos,
-					id: p[index].partyID
+					id: p[index].partyID,
+					people: p[index].people
 				}
 				parties.push(party);
 			});
@@ -151,6 +152,19 @@ app.get('/getParties', (req, res) => {
 
 app.post('/joinParty', (req, res) => {
 	var obj = req.body;
+	console.log(obj.partyID);
+	firebase.database().ref("parties/" + obj.partyID + "/party/people").once("value").then((partyPeopleData) => {
+		var partyPeople = partyPeopleData.val();
+		if(partyPeople.indexOf(obj.username) == -1){
+			partyPeople.push(obj.username);
+			firebase.database().ref("parties/" + obj.partyID + "/party/people/").set(partyPeople).then(() => {
+				res.status(200).send({message: "User succesfully joined party"});
+			});
+		}else {
+			res.status(200).send({message: "User is already in party"});
+		}
+
+	});
 
 });
 app.post('/storeLocation', (req, res) => {

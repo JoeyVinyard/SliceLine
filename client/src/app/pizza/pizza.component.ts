@@ -91,7 +91,9 @@ export class PizzaComponent implements OnInit {
 	}
 
 	joinParty(party){
-		console.log("Here");
+		console.log(party);
+
+		this.db.joinParty(localStorage.getItem('username'), party.id);
 		localStorage.setItem("currentParty", JSON.stringify(party));
 		this.r.navigateByUrl('/party');
 	}
