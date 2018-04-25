@@ -14,12 +14,12 @@
 					<div id="detailContent">
 						<b><p><u>Group Size:</u> {{partySize}}/{{party.size}}</p></b>
 					</div>
-					<div id="detailContent">
+					<!-- <div id="detailContent">
 						<b><p><u>Method:</u> Delivery/Pickup</p></b>
-					</div>
+					</div> -->
 					<div id="orderContent">
 							<b><p><u>Order:</u></p></b>
-							<p>Item</p>
+							<p *ngFor="let item of party.order">{{item.Name}}</p>
 					</div>
 					<div id="detailContent">
 						<b><p><u>Total:</u> ${{party.total}}</p></b>

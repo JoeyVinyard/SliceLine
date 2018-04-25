@@ -46,7 +46,7 @@
 			<div id="listEntries" class="medium-12 column">
 				<div id="listEntry" class="medium-12 column" *ngFor="let party of parties" [ngClass]="{'odd' : parties.indexOf(party)%2==1, 'even' : parties.indexOf(party)%2==0}">
 					<div id="entrySection" class="medium-2 column">
-						<b><p>{{party.dist}}</p></b>
+						<b><p>{{party.dist}} Miles</p></b>
 					</div>
 					<div id="entrySection" class="medium-2 column">
 						<b><p>{{party.order.length}}</p></b>
@@ -60,8 +60,8 @@
 					<div id="entrySection" class="medium-1 column">
 						<b><p>$ {{party.total}}</p></b>
 					</div>
-					<div id="entrySection" class="medium-1 column joinSection">
-						<b><p (click)="joinParty(party)" >Join</p></b>
+					<div id="entrySection" class="medium-1 column joinSection" (click)="joinParty(party)">
+						<b><p>Join</p></b>
 						<!-- <button class="button listButton">Join</button> -->
 					</div>
 				</div>
