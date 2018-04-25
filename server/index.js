@@ -1,5 +1,7 @@
 const express = require('express')
-const app = express()
+const app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var geo = require('node-geocoder');
 var pizza = require('pizzapi');
@@ -189,7 +191,18 @@ app.get('/*.*', (req, res) => {
 	res.sendFile(__dirname + "/assets/res/"+req.url);
 })
 
-app.listen(3000, () => {
+
+io.on('connection', (socket) => {
+	socket.on('message', (message) => {
+		io.sockets.in(message.party).emit('message', message);
+	});
+	socket.on('joinParty', (id) => {
+		socket.join(id);
+	})
+});
+
+
+http.listen(3000, () => {
 	console.log("Listening on 3000");
 });
 

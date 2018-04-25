@@ -25,6 +25,7 @@
     "mongoose": "^5.0.14",
     "node-geocoder": "^3.22.0",
     "password-hash": "^1.2.2",
-    "pizzapi": "0.0.8"
+    "pizzapi": "0.0.8",
+    "socket.io": "^2.1.0"
   }
 }
