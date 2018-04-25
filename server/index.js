@@ -135,7 +135,8 @@ app.get('/getParties', (req, res) => {
 					size: p[index].party.Size,
 					order: p[index].party.Order,
 					currentUsers: 0,
-					pos: p[index].party.pos
+					pos: p[index].party.pos,
+					
 				}
 				parties.push(party);
 			});
