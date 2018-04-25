@@ -136,7 +136,7 @@ app.get('/getParties', (req, res) => {
 					order: p[index].party.Order,
 					currentUsers: 0,
 					pos: p[index].party.pos,
-					
+					id: p[index].partyID
 				}
 				parties.push(party);
 			});

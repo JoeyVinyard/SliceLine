@@ -80,7 +80,7 @@ export class PizzaComponent implements OnInit {
 				this.parties.sort( function(a , b) {
 					return b.total - a.total;
 				})
-				console.log("Cost Down")
+				console.log("Cost Down");
 			}
 		}
 	}
@@ -88,6 +88,12 @@ export class PizzaComponent implements OnInit {
 	logout(){
 		document.cookie="token=0; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 		this.r.navigateByUrl('');
+	}
+
+	joinParty(party){
+		console.log("Here");
+		localStorage.setItem("currentParty", JSON.stringify(party));
+		this.r.navigateByUrl('/party');
 	}
 
 	constructor(private db: DatabaseService, private r: Router){
