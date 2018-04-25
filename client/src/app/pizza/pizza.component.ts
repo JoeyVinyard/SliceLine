@@ -17,7 +17,7 @@ export class PizzaComponent implements OnInit {
 	parties = [];
 
 	userPin = ("../../assets/UserPin.png");
-	partyPin = ("../../assets/PartyPin.png")
+	partyPin = ("../../assets/PartyPin.png");
 	
 	sort(criteria, direction){
 		if(criteria == "distance"){

@@ -1,3 +1,53 @@
-<p>
-  party works!
-</p>
+<div class="row">
+    <div id="topBar" class="medium-12 column">
+      <div id="header">
+        <p id="Title" routerLink="/" routerLinkActive="active">SliceLine</p>
+      </div>
+    </div>
+    <div id="mainSection" class="medium-12 column">
+      <p id="Title2">Party Chat</p>
+      <div class="medium-4 column" id="partyDetails">
+        <div class="medium-12 column" id="header2">
+          <p id="Title3">Party Details</p>
+        </div>
+        <div class="medium-12 column" id="details">
+          <div id="detailContent">
+            <b><p><u>Group Size:</u> #/#</p></b>
+          </div>
+          <div id="detailContent">
+            <b><p><u>Method:</u> Delivery/Pickup</p></b>
+          </div>
+          <div id="orderContent">
+              <b><p><u>Order:</u></p></b>
+              <p>Item</p>
+          </div>
+          <div id="detailContent">
+            <b><p><u>Total:</u> $#.##</p></b>
+          </div>
+          <div id="detailContent">
+            <b><p><u>Total/Person:</u> $#.##</p></b>
+          </div>
+        </div>
+      </div>
+      <div class="medium-8 column" id="partyChat">
+          <div id="message" class="messageLeft" [ngClass]="{'messageLeft' : !m.fromMe, 'messageRight' : m.fromMe}">
+            <p>Message</p>
+          </div>
+          <div id="message" class="messageRight" [ngClass]="{'messageLeft' : !m.fromMe, 'messageRight' : m.fromMe}">
+              <p>Message</p>
+            </div>
+      </div>
+      <div class="medium-4 column" id="leaveDiv">
+        <button class="button leaveButton">Leave Party</button>
+      </div>
+      <div class="medium-8 column" id="chatRespond">
+          <div class="medium-10 column inner">
+              <input type="text" id="responseText">
+          </div>
+          <div class="medium-2 column inner">
+              <button class="button sendButton">Send</button>
+          </div>
+      </div>
+
+  </div>
+</div>

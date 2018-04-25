@@ -8,6 +8,10 @@
     z-index: 1;
 }
 
+#row{
+    background: #B12029;
+}
+
 .topButton{
     background: rgba(250, 180, 34, 0.5);
     border: 2px solid #FAB422;
