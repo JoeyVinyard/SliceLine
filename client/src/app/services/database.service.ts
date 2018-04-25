@@ -78,6 +78,19 @@ export class DatabaseService {
 		})
 	}
 
+	joinParty(username, partyID): Promise<any> {
+		return new Promise((resolve, reject) => {
+			var joinObj = {
+				user: username,
+				partyID: partyID
+			}
+			this.http.post(this.dbUrl+ "joinParty/", JSON.stringify(joinObj), this.httpOptions).subscribe((data) => {
+				console.log(data);
+				resolve(data);
+			});
+		});
+	}
+
 	getParties(username): Promise<any> {
 		var options = {
 			headers: new HttpHeaders({

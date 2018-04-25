@@ -147,6 +147,10 @@ app.get('/getParties', (req, res) => {
 	})
 });
 
+app.post('/joinParty', (req, res) => {
+	var obj = req.body;
+
+});
 app.post('/storeLocation', (req, res) => {
 	var obj = req.body;
 	console.log("location object", obj);

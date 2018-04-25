@@ -212,6 +212,7 @@ export class OrderComponent implements OnInit {
 		this.party.pos = JSON.parse(localStorage.getItem("loc"));
 		console.log(this.party)
 		this.db.createParty(localStorage.getItem('username'), this.party);
+		this.r.navigateByUrl('/party');
 		//Store in database here
 	}
 
