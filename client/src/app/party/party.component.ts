@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket } from 'ng-socket-io';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
 	selector: 'app-party',
@@ -30,14 +31,20 @@ export class PartyComponent implements OnInit {
 		})
 	}
 
-	constructor(private r: Router, private s: Socket) {
+	constructor(private r: Router, private s: Socket, private db: DatabaseService) {
 		this.party = JSON.parse(localStorage.getItem("currentParty"));
+		console.log(this.party);
 		this.user = localStorage.getItem("username");
 		if(!this.party){
 			r.navigateByUrl('pizza');
 		}
 		s.emit('joinParty', this.party.id);		
 		this.getMessage();
+	}
+
+	leaveParty(){
+		this.db.leaveParty(localStorage.getItem('username'), this.party.id);
+		this.r.navigateByUrl('/pizza');
 	}
 
 	ngOnInit() {}

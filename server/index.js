@@ -139,7 +139,7 @@ app.get('/getParties', (req, res) => {
 					currentUsers: 0,
 					pos: p[index].party.pos,
 					id: p[index].partyID,
-					people: p[index].people
+					people: p[index].party.people
 				}
 				parties.push(party);
 			});
@@ -167,6 +167,30 @@ app.post('/joinParty', (req, res) => {
 	});
 
 });
+
+app.post('/leaveParty', (req, res) => {
+	var obj = req.body;
+	console.log(obj.partyID);
+	firebase.database().ref("parties/" + obj.partyID + "/party/people").once("value").then((partyPeopleData) => {
+		var partyPeople = partyPeopleData.val();
+		if(partyPeople.indexOf(obj.username) != -1){
+			var newpeople = [];
+			partyPeople.forEach((person) => {
+				if(person != obj.username){
+					newpeople.push(person);
+				}
+			});
+			firebase.database().ref("parties/" + obj.partyID + "/party/people/").set(newpeople).then(() => {
+				res.status(200).send({message: "User succesfully joined party"});
+			});
+		}else {
+			res.status(200).send({message: "User is not in party"});
+		}
+
+	});
+
+});
+
 app.post('/storeLocation', (req, res) => {
 	var obj = req.body;
 	console.log("location object", obj);

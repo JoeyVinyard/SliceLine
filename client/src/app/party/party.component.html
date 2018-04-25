@@ -12,7 +12,7 @@
 				</div>
 				<div class="medium-12 column" id="details">
 					<div id="detailContent">
-						<b><p><u>Group Size:</u> #/#</p></b>
+						<b><p><u>Group Size:</u> {{party.people.length}}/{{party.size}}</p></b>
 					</div>
 					<div id="detailContent">
 						<b><p><u>Method:</u> Delivery/Pickup</p></b>
@@ -22,10 +22,10 @@
 							<p>Item</p>
 					</div>
 					<div id="detailContent">
-						<b><p><u>Total:</u> $#.##</p></b>
+						<b><p><u>Total:</u> ${{party.total}}</p></b>
 					</div>
 					<div id="detailContent">
-						<b><p><u>Total/Person:</u> $#.##</p></b>
+						<b><p><u>Total/Person:</u> ${{party.total/party.size}}</p></b>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 			<div class="medium-4 column" id="leaveDiv">
-				<button class="button leaveButton">Leave Party</button>
+				<button class="button leaveButton" (click)="leaveParty()">Leave Party</button>
 			</div>
 			<div class="medium-8 column" id="chatRespond">
 					<div class="medium-10 column inner">

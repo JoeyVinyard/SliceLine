@@ -91,6 +91,19 @@ export class DatabaseService {
 		});
 	}
 
+	leaveParty(username, partyID): Promise<any> {
+		return new Promise((resolve, reject) => {
+			var joinObj = {
+				username: username,
+				partyID: partyID
+			}
+			this.http.post(this.dbUrl+ "leaveParty/", JSON.stringify(joinObj), this.httpOptions).subscribe((data) => {
+				console.log(data);
+				resolve(data);
+			});
+		});
+	}
+
 	getParties(username): Promise<any> {
 		var options = {
 			headers: new HttpHeaders({
