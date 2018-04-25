@@ -131,7 +131,7 @@ app.get('/getParties', (req, res) => {
 				}
 				var d = getDistance(l,l2);
 				var party = {
-					dist: d,
+					dist: (d/5280).toFixed(3),
 					creator: p[index].creator,
 					total: p[index].party.Total,
 					size: p[index].party.Size,
@@ -139,7 +139,7 @@ app.get('/getParties', (req, res) => {
 					currentUsers: 0,
 					pos: p[index].party.pos,
 					id: p[index].partyID,
-					people: p[index].party.people
+					people: p[index].party.people,
 				}
 				parties.push(party);
 			});
