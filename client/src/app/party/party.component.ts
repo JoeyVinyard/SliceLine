@@ -14,6 +14,7 @@ export class PartyComponent implements OnInit {
 	party;
 	message;
 	messages = [];
+	partySize = 1;
 
 	sendMessage(){
 		this.s.emit('message', {
@@ -30,20 +31,32 @@ export class PartyComponent implements OnInit {
 			console.log(this.messages);
 		})
 	}
+	getJoinees() {
+		return this.s.fromEvent("partyJoin").subscribe((data: number) => {
+			this.partySize = data;
+		})
+	}
+	getLeave() {
+		return this.s.fromEvent("partyLeave").subscribe((data: number) => {
+			this.partySize = data;
+		})
+	}
 
 	constructor(private r: Router, private s: Socket, private db: DatabaseService) {
 		this.party = JSON.parse(localStorage.getItem("currentParty"));
-		console.log(this.party);
 		this.user = localStorage.getItem("username");
 		if(!this.party){
 			r.navigateByUrl('pizza');
 		}
-		s.emit('joinParty', this.party.id);		
+		s.emit('joinParty', this.party.id);
 		this.getMessage();
+		this.getJoinees();
+		this.getLeave();
 	}
 
 	leaveParty(){
 		this.db.leaveParty(localStorage.getItem('username'), this.party.id);
+		this.s.emit('leaveParty', this.party.id);
 		this.r.navigateByUrl('/pizza');
 	}
 

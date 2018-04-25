@@ -239,8 +239,15 @@ io.on('connection', (socket) => {
 		io.sockets.in(message.party).emit('message', message);
 	});
 	socket.on('joinParty', (id) => {
-		socket.join(id);
-	})
+		socket.join(id, () => {
+			var s = (io.nsps['/'].adapter.rooms[id].length);
+			io.sockets.in(id).emit("partyJoin", s);
+		});
+	});
+	socket.on('leaveParty', (id) => {
+		 socket.to(id).emit('partyLeave', io.nsps['/'].adapter.rooms[id].length-1);
+		 socket.leave(id);
+	});
 });
 
 
